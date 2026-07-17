@@ -1,0 +1,18 @@
+{
+  "repository": "QSO-STUDIO",
+  "phase_order": ["foundation", "interface", "assurance", "integration", "release"],
+  "groups": {
+    "": ["package.json", "tsconfig.json", "vite.config.ts"],
+    "src/app": ["App.tsx", "routes.tsx", "providers.tsx"],
+    "src/pages": ["NewExperiment.tsx", "ExperimentRun.tsx", "ExperimentReport.tsx", "RoleRegistry.tsx", "LedgerInspector.tsx", "GovernanceReview.tsx"],
+    "src/components": ["RoleCard.tsx", "WorkflowGraph.tsx", "MessageTimeline.tsx", "EvidenceMatrix.tsx", "FreezePointViewer.tsx", "LedgerChain.tsx", "RiskReview.tsx", "ApprovalPanel.tsx"],
+    "src/api": ["client.ts", "experiments.ts", "registries.ts", "reports.ts"],
+    "src/models": ["experiment.ts", "role.ts", "workflow.ts", "event.ts", "report.ts"],
+    "src/validation": ["schemas.ts", "guards.ts"],
+    "tests": ["role-registry.test.ts", "workflow-graph.test.ts", "ledger-inspector.test.ts", "approval-panel.test.ts"],
+    "public/schemas": [".gitkeep"],
+    "docs": ["architecture.md", "ui-roadmap.md", "accessibility.md", "security.md"],
+    ".github/workflows": ["test.yml", "security.yml"],
+    ".github": ["CODEOWNERS", "pull_request_template.md"]
+  }
+}
