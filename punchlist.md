@@ -21,12 +21,12 @@ This checklist records evidence. A documentation file existing is not by itself 
 
 | Item | Status | Evidence required |
 |---|---|---|
-| Strict MkDocs configuration | REVIEW | `mkdocs.yml` and successful command |
-| Pinned CI documentation toolchain | REVIEW | Workflow file and run log |
-| Internal link and navigation validation | REVIEW | Strict build output |
+| Strict MkDocs configuration | DONE | `mkdocs.yml` and successful exact-branch build |
+| Pinned CI documentation toolchain | DONE | Workflow run 29699879042 |
+| Internal link and navigation validation | DONE | `mkdocs build --strict` completed successfully |
 | Accessibility review of documentation | OPEN | Keyboard, heading, link, and diagram-alternative review |
 | Security/privacy review of documentation and workflow | OPEN | Permission and dependency review |
-| Artifact checksum and provenance | OPEN | Artifact digest and workflow metadata |
+| Artifact checksum and provenance | REVIEW | `qso-studio-site` digest recorded; final PR evidence review remains |
 | Publication owner, environment, and canonical URL | BLOCKED | Charter decision |
 | Publication verification and rollback rehearsal | BLOCKED | Approved deployment evidence |
 
@@ -57,4 +57,5 @@ This checklist records evidence. A documentation file existing is not by itself 
 
 ## Evidence log
 
-- 2026-07-19 — Documentation foundation prepared as a review candidate. No charter, implementation, publication, or release gate is marked complete until exact-head CI and human review are recorded.
+- 2026-07-19 — Documentation workflow run 29699879042 passed the pinned strict build and produced `qso-studio-site` with SHA-256 digest `065c1a87844f04ff6a1e6f2cb962b25d841f136f1eff1c13e42f767bfc616c58`.
+- 2026-07-19 — Consent Capacity Lock passed on the documentation candidate. Charter, publication, application, and release approval remain blocked or in review.
