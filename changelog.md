@@ -3,24 +3,50 @@
 ## Unreleased
 
 ### Product
+
+- 2026-07-19 — Expanded the proposed user outcome into one deterministic, fixture-backed, read-only evidence-review workflow.
+- 2026-07-19 — Preserved platform, distribution, privacy, license, support, and integration ownership as explicit charter decisions.
 - 2026-07-16 — Established product/UX charter approval and documentation integrity as the first QSO-STUDIO objective.
-- 2026-07-16 — Defined the initial user outcome as a truthful read-only evidence-review workflow; runtime execution, repository writes, credentials, and payment control remain out of scope.
+
+### Documentation
+
+- 2026-07-19 — Added Pages-ready project overview, architecture, design contracts, workflow, security/privacy, accessibility, onboarding, operations, and ADR documentation.
+- 2026-07-19 — Added `mkdocs.yml`, structured site navigation, and a pinned strict documentation-build workflow that uploads an artifact without deploying it.
+- 2026-07-19 — Added an evidence-oriented `punchlist.md` aligned with the task chain and release plan.
 
 ### Architecture
-- Studio must separate visualization and proposal review from human approval, runtime execution, repository mutation, and settlement authority.
 
-### Implementation
-- The existing README is an initial proposal only; its unsupported Pages publication claim must be removed or implemented and verified before release.
+- 2026-07-19 — Proposed ADR-0001: Studio begins as a local read-only evidence-review boundary with no upstream write, execution, signing, payment, or autonomous approval client.
+- 2026-07-19 — Defined input, parser, validator, normalization, comparison, presentation, export, diagnostic, and external-authority boundaries.
+- 2026-07-16 — Recorded that Studio must separate visualization and proposal review from human approval, runtime execution, repository mutation, and settlement authority.
+
+### Security
+
+- 2026-07-19 — Defined bounded parsing, inert rendering, exact contract selection, digest verification, local-only defaults, diagnostic redaction, and no-secret/no-write controls.
+- 2026-07-19 — Bound future Studio work to the immutable `QSO-CONSENT-CAPACITY-LOCK-v1` policy.
+
+### Accessibility
+
+- 2026-07-19 — Defined keyboard, focus, semantics, contrast, scaling, reduced-motion, visualization-alternative, and error-recovery requirements with an evidence matrix.
+
+### Fixed
+
+- 2026-07-19 — Replaced the unsupported claim that a Pages site is already published with accurate build, artifact, and publication states.
 
 ### Release
-- The charter/documentation candidate remains blocked by approval, accurate repository mapping, real publication/build evidence, accessibility, security/privacy, checksums, provenance, and rollback.
+
+- 2026-07-19 — Kept every release and publication gate blocked or in review pending exact-head CI, evidence, and human approval.
+- 2026-07-16 — Kept the charter/documentation candidate blocked by approval, repository mapping, build, accessibility, security/privacy, provenance, and rollback requirements.
 
 ### Deployment
-- No site or application deployment is authorized until repository publication claims correspond to real, reproducible artifacts.
 
-## Entry Format
+- 2026-07-19 — Added a documentation build artifact workflow only; no GitHub Pages deployment or application distribution is authorized.
+- 2026-07-16 — Recorded that no site or application deployment is authorized until repository publication claims correspond to real, reproducible artifacts.
+
+## Entry format
+
 - Date
-- Category: Product / Architecture / Added / Changed / Fixed / Security / Release / Deployment
+- Category: Product / Documentation / Architecture / Added / Changed / Fixed / Security / Accessibility / Release / Deployment
 - Summary
 - Evidence: issue, PR, commit, workflow, artifact, or deployment record
 - Impact and migration notes where applicable
