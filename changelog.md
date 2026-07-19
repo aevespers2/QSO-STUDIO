@@ -24,6 +24,7 @@
 
 - 2026-07-19 — Defined bounded parsing, inert rendering, exact contract selection, digest verification, local-only defaults, diagnostic redaction, and no-secret/no-write controls.
 - 2026-07-19 — Bound future Studio work to the immutable `QSO-CONSENT-CAPACITY-LOCK-v1` policy.
+- 2026-07-19 — Confirmed that the candidate passed the repository Consent Capacity Lock workflow.
 
 ### Accessibility
 
@@ -35,7 +36,8 @@
 
 ### Release
 
-- 2026-07-19 — Kept every release and publication gate blocked or in review pending exact-head CI, evidence, and human approval.
+- 2026-07-19 — The pinned strict documentation build completed successfully and produced the `qso-studio-site` artifact with recorded SHA-256 provenance.
+- 2026-07-19 — Kept charter, publication, accessibility/security review, and release approval blocked or in review.
 - 2026-07-16 — Kept the charter/documentation candidate blocked by approval, repository mapping, build, accessibility, security/privacy, provenance, and rollback requirements.
 
 ### Deployment
