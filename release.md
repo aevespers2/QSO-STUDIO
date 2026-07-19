@@ -31,7 +31,7 @@ QSO-STUDIO remains a documentation-first repository. This candidate adds Pages-r
 
 ## Selected completed work
 
-Nothing is release-complete yet. The documentation foundation is a review candidate until exact-head CI, accessibility/security review, artifact provenance, and human approval are recorded.
+The documentation toolchain, strict MkDocs build, artifact upload, and repository Consent Capacity Lock have passed on the candidate branch. The first site artifact was retained with a SHA-256 digest in `punchlist.md`. These are documentation-build milestones only; charter approval, publication, accessibility/security review, and release approval remain incomplete.
 
 ## Planned changelog entries
 
@@ -49,12 +49,12 @@ Nothing is release-complete yet. The documentation foundation is a review candid
 | Product/UX charter | BLOCKED | Approve users, workflow, platform, ecosystem role, privacy/license model, distribution, support, and authority boundaries. |
 | Documentation integrity | REVIEW | Every path, publication statement, workflow, and capability claim matches repository evidence. |
 | Task completion | REVIEW | P0/P1 decisions and evidence are recorded; `punchlist.md` accurately reflects status. |
-| Documentation build | PENDING CI | Pinned strict build passes at the exact candidate head. |
+| Documentation build | PASS — CANDIDATE | Pinned strict build and artifact upload pass; final-head checks remain required before merge. |
 | UI build/tests | NOT YET INCLUDED | Required only for a later UI candidate. |
-| Security/privacy | REVIEW | Documentation/workflow review passes now; application controls require later evidence. |
-| Accessibility | REVIEW | Documentation review passes now; application controls require later evidence. |
-| Documentation | REVIEW | Setup, scope, architecture, design, workflow, limitations, accessibility, privacy, operations, and rollback are present and approved. |
-| Provenance | OPEN | Commit, tool versions, commands, artifact, digest, and workflow run are retained. |
+| Security/privacy | REVIEW | Consent lock passed; documentation/workflow review remains, and application controls require later evidence. |
+| Accessibility | REVIEW | Documentation review remains; application controls require later evidence. |
+| Documentation | REVIEW | Setup, scope, architecture, design, workflow, limitations, accessibility, privacy, operations, and rollback are present and await human approval. |
+| Provenance | REVIEW | Workflow, artifact, and digest are recorded; final review and source archive remain. |
 | Publication | BLOCKED | Owner, canonical URL, environment approval, deployment verification, and rollback are approved. |
 | Approval | PENDING | Explicit human approval after all included-scope gates pass. |
 
@@ -88,7 +88,6 @@ Restore the prior verified artifact or remove publication, preserve failed-candi
 
 - Approval of users, first workflow, platform/distribution, ecosystem role, privacy/retention, license, support/security ownership, and authority boundaries.
 - Selection of one canonical record type, contract owner/version, integration manifest, and deterministic fixture set.
-- Exact-head strict documentation build and artifact checksum.
 - Documentation accessibility, security/privacy, and authority-language reviews.
 - Publication owner, canonical URL, environment reviewers, verification, and rollback rehearsal.
 - Application architecture, implementation, tests, packaging, and release evidence remain future work.
@@ -97,3 +96,4 @@ Restore the prior verified artifact or remove publication, preserve failed-candi
 
 - 2026-07-16 — Established charter approval and documentation integrity as the first release gate.
 - 2026-07-19 — Prepared a Pages-ready documentation candidate and strict build workflow without adding application or publication authority.
+- 2026-07-19 — Strict documentation build, artifact upload, and Consent Capacity Lock passed on the candidate branch; human and architectural review remain required.
