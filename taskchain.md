@@ -17,7 +17,7 @@ States: `PROPOSED` · `READY` · `IN PROGRESS` · `BLOCKED` · `REVIEW` · `DONE
 | Priority | Task | Owner | Depends on | Status | Acceptance criteria |
 |---|---|---|---|---|---|
 | P0 | Approve product/UX charter and documentation foundation | Architect | User approval | BLOCKED | Users, workflow, platform, ecosystem role, privacy/data/license model, distribution target, authority boundaries, ADR-0001, and repository claims are approved. |
-| P1 | Verify a reproducible accessible documentation artifact | QSOBuilder | Documentation PR | REVIEW | `mkdocs build --strict` passes at exact head; links, semantics, keyboard path, privacy/security, artifact checksum, provenance, and rollback evidence are recorded. |
+| P1 | Verify a reproducible accessible documentation artifact | QSOBuilder | Documentation PR | REVIEW | Strict build and artifact creation pass; links, semantics, keyboard path, privacy/security, provenance, rollback, and human documentation review are recorded. |
 | P2 | Approve one read-only evidence-review contract | Architect | P0, P1, upstream manifest and fixtures | BLOCKED | Exact contract owner/version, parser limits, fixture hashes, review model, findings, comparison, export, and failure behavior are approved. |
 | P3 | Build the minimal accessible UI skeleton | Builder | P2 | PROPOSED | The approved workflow passes unit, component, contract, integration, smoke, accessibility, and security tests with no credentials or direct execution/write/payment path. |
 
@@ -27,6 +27,7 @@ Do not implement runtime, payment, signing, approval, or repository-write author
 
 ## Builder log
 
-- 2026-07-19 — Prepared a Pages-ready documentation foundation, strict build workflow, architecture/design/workflow/security/accessibility/onboarding/operations guidance, ADR-0001, and evidence punch list. Awaiting exact-head CI and human charter review.
+- 2026-07-19 — The documentation and Consent Capacity Lock workflows passed on the documentation candidate; the static-site artifact and digest are recorded in `punchlist.md`.
+- 2026-07-19 — Prepared a Pages-ready documentation foundation, strict build workflow, architecture/design/workflow/security/accessibility/onboarding/operations guidance, ADR-0001, and evidence punch list. Awaiting human charter and documentation review.
 
-Record approvals, commits, documentation/build/accessibility/security commands and results, contract/fixture hashes, artifact checksums, rollback evidence, and follow-ups below this line.
+Record approvals, commits, accessibility/security review results, contract/fixture hashes, rollback evidence, and follow-ups below this line.
