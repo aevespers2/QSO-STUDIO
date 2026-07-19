@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="QSO-STUDIO is the proposed read-only human-review interface for Quantum State Object evidence, provenance, freeze points, proposals, and release state.">
+  <title>QSO-STUDIO — Human review for QSO evidence</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero" id="top">
+    <nav aria-label="Primary">
+      <a class="brand" href="#top">QSO-STUDIO</a>
+      <div class="nav-links">
+        <a href="#purpose">Purpose</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#surfaces">Surfaces</a>
+        <a href="#boundaries">Boundaries</a>
+        <a href="#docs">Documentation</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <p class="eyebrow">Product/UX charter candidate</p>
+      <h1>Inspect complex QSO evidence without inheriting hidden authority.</h1>
+      <p class="lede">QSO-STUDIO is a proposed human-review surface for genomes, state, messages, provenance, freeze points, experiments, release evidence, and payment records. Its current repository surface is documentation—not a verified application.</p>
+      <p class="status"><strong>Current boundary:</strong> read-only review and proposal export. No runtime execution, unrestricted repository writes, credentials, autonomous approval, or production payment control.</p>
+      <div class="actions">
+        <a class="button primary" href="#workflow">Review the workflow</a>
+        <a class="button" href="PROJECT_GUIDE.md">Project guide</a>
+        <a class="button" href="https://github.com/aevespers2/QSO-STUDIO">Repository</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="purpose" class="section">
+      <p class="eyebrow">Purpose</p>
+      <h2>A review instrument, not a control plane.</h2>
+      <div class="grid three">
+        <article class="card"><h3>Understand</h3><p>Bring versioned object, genome, evidence, message, freeze, provenance, and release records into one coherent review context.</p></article>
+        <article class="card"><h3>Compare</h3><p>Inspect differences, validation outcomes, uncertainty, failures, and source hashes without rewriting the underlying evidence.</p></article>
+        <article class="card"><h3>Propose</h3><p>Prepare bounded review artifacts for an external human-approval workflow. A proposal never becomes execution merely because it was created in Studio.</p></article>
+      </div>
+    </section>
+
+    <section id="workflow" class="section alt">
+      <p class="eyebrow">Read-only evidence review</p>
+      <h2>Validate first. Render safely. Export deliberately.</h2>
+      <div class="flow" aria-label="Studio review workflow">
+        <span>Select bundle</span><b aria-hidden="true">→</b><span>Verify version and hashes</span><b aria-hidden="true">→</b><span>Normalize and redact</span><b aria-hidden="true">→</b><span>Inspect evidence</span><b aria-hidden="true">→</b><span>Annotate</span><b aria-hidden="true">→</b><span>Export review artifact</span><b aria-hidden="true">→</b><span>External approval</span>
+      </div>
+      <div class="grid two">
+        <article class="card"><h3>Fail closed</h3><p>Unsupported, stale, malformed, oversized, or hash-mismatched evidence remains rejected or visibly unresolved. Studio does not invent a compatible interpretation.</p></article>
+        <article class="card"><h3>Preserve provenance</h3><p>Every displayed value remains linked to its source bundle, repository, immutable commit, contract version, and transformation history.</p></article>
+        <article class="card"><h3>Treat content as data</h3><p>Imported text, markup, links, diagrams, and metadata are untrusted. They cannot execute scripts, commands, dynamic imports, or repository instructions.</p></article>
+        <article class="card"><h3>Keep approval external</h3><p>Annotations and proposals are distinct from source evidence and require a separately authorized workflow before any operational action.</p></article>
+      </div>
+    </section>
+
+    <section id="surfaces" class="section">
+      <p class="eyebrow">Proposed information architecture</p>
+      <h2>Each view answers a review question and carries no hidden operational power.</h2>
+      <div class="grid three">
+        <article class="card"><h3>Object overview</h3><p>Identity, genome reference, declared capabilities, state summary, and evidence freshness.</p></article>
+        <article class="card"><h3>Evidence explorer</h3><p>Sources, hashes, outcomes, uncertainty, contradictions, transformations, and attribution.</p></article>
+        <article class="card"><h3>Message timeline</h3><p>Bounded communications, ordering, causal links, limits, and protocol errors.</p></article>
+        <article class="card"><h3>Freeze inspector</h3><p>Snapshot hashes, stop reasons, runtime limits, rollback references, and integrity status.</p></article>
+        <article class="card"><h3>Release view</h3><p>Task-chain state, acceptance gates, artifacts, checksums, provenance, blockers, and approvals.</p></article>
+        <article class="card"><h3>Payment evidence</h3><p>Intent, authorization, allocation, receipt, dispute, environment, and reconciliation records—read-only and never a settlement control.</p></article>
+      </div>
+    </section>
+
+    <section id="boundaries" class="section alt">
+      <p class="eyebrow">Authority boundaries</p>
+      <h2>Display, proposal, approval, execution, writeback, and settlement remain separate.</h2>
+      <div class="boundary-grid">
+        <div><strong>Studio may</strong><span>validate evidence bundles</span><span>render read-only views</span><span>show uncertainty and errors</span><span>collect human notes</span><span>export bounded proposals</span></div>
+        <div><strong>Studio may not</strong><span>execute QSO runtimes</span><span>approve its own proposals</span><span>hold credentials</span><span>write unrestricted repository content</span><span>control production payments</span></div>
+      </div>
+      <p class="note">Future integrations must be independently versioned, authenticated, least-privilege, auditable, and explicitly approved. No such integration is part of the current documentation candidate.</p>
+    </section>
+
+    <section id="accessibility" class="section">
+      <p class="eyebrow">Accessibility and privacy</p>
+      <h2>Evidence is only useful when people can perceive, navigate, and question it.</h2>
+      <div class="grid two">
+        <article class="card"><h3>Multiple representations</h3><p>Every visualization requires a structured text or table alternative. Status never depends on color alone.</p></article>
+        <article class="card"><h3>Complete keyboard path</h3><p>Navigation, inspection, filters, errors, annotations, and export must be operable without a pointer.</p></article>
+        <article class="card"><h3>Privacy minimization</h3><p>Personal, financial, and operationally sensitive metadata is minimized, classified, redacted, and excluded from public artifacts by default.</p></article>
+        <article class="card"><h3>Recoverable errors</h3><p>Validation failures identify the affected record, preserve original evidence, and offer a safe return to the review workflow.</p></article>
+      </div>
+    </section>
+
+    <section id="docs" class="section alt">
+      <p class="eyebrow">Developer documentation</p>
+      <h2>Begin with the charter and verify each boundary before implementation.</h2>
+      <div class="grid two">
+        <article class="card"><h3>Project guide</h3><p>Purpose, users, information architecture, bundle model, privacy, accessibility, onboarding, and release gates.</p><a href="PROJECT_GUIDE.md">Open project guide</a></article>
+        <article class="card"><h3>Architecture</h3><p>Components, trust zones, workflow states, security requirements, dependency map, and verification strategy.</p><a href="ARCHITECTURE.md">Open architecture</a></article>
+        <article class="card"><h3>Task chain</h3><p>The current plan keeps charter approval and documentation integrity ahead of UI implementation.</p><a href="../taskchain.md">Open task chain</a></article>
+        <article class="card"><h3>Release plan</h3><p>No application release is eligible until documentation, accessibility, privacy/security, provenance, and authority gates pass.</p><a href="../release.md">Open release plan</a></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>QSO-STUDIO is currently a documentation and design candidate. The site describes a proposed read-only review interface and does not represent a deployed application or authorization service.</p>
+  </footer>
+</body>
+</html>
