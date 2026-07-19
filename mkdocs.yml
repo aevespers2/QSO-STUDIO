@@ -1,0 +1,37 @@
+site_name: QSO-STUDIO
+site_description: Documentation-first design for a read-only QSO evidence-review workspace
+repo_url: https://github.com/aevespers2/QSO-STUDIO
+repo_name: aevespers2/QSO-STUDIO
+edit_uri: edit/main/docs/
+docs_dir: docs
+site_dir: site
+strict: true
+theme:
+  name: mkdocs
+  navigation_depth: 3
+nav:
+  - Home: index.md
+  - Project overview: project-overview.md
+  - Architecture: architecture.md
+  - Design contracts: design.md
+  - Workflows:
+      - Evidence review: workflows/evidence-review.md
+  - Security and privacy: security-privacy.md
+  - Accessibility: accessibility.md
+  - Developer guide:
+      - Onboarding: development/onboarding.md
+  - Operations and recovery: operations.md
+  - Decisions:
+      - ADR-0001 — Read-only boundary: decisions/0001-read-only-review-boundary.md
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - fenced_code
+  - tables
+  - toc:
+      permalink: true
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
