@@ -15,6 +15,7 @@ The repository is currently **documentation-first**. It does not contain a verif
 | Studio application | Not implemented |
 | Read-only workflow | Specified, not implemented |
 | Portable trust review profile | Candidate contract; not implemented or approved |
+| Studio/AionUi ownership split | Proposed in ADR-0002; not approved |
 | Runtime, device-control, repository-write, or payment authority | Explicitly out of scope |
 
 ## Documentation
@@ -31,7 +32,8 @@ The Pages-ready documentation includes:
 - [Accessibility requirements](docs/accessibility.md)
 - [Developer onboarding](docs/development/onboarding.md)
 - [Operations, recovery, and rollback](docs/operations.md)
-- [Architecture decision record](docs/decisions/0001-read-only-review-boundary.md)
+- [ADR-0001: read-only review boundary](docs/decisions/0001-read-only-review-boundary.md)
+- [ADR-0002: QSO-STUDIO and AionUi boundary](docs/decisions/0002-review-surface-and-aionui-boundary.md)
 
 Build the documentation locally with:
 
@@ -46,7 +48,7 @@ On Windows PowerShell, replace the environment-start command with `.venv\Scripts
 
 ## Portfolio role
 
-QSO-STUDIO is the candidate owner of the **domain-neutral review contract**, normalized review model, accessibility requirements, and non-authoritative export semantics. AionUi may later host an optional compatible desktop or WebUI adapter, but the host shell must not redefine review state, approval, capability, correction, revocation, or canonical-state semantics.
+QSO-STUDIO is the candidate owner of the **domain-neutral review contract**, normalized review model, accessibility requirements, and non-authoritative export semantics. ADR-0002 proposes that AionUi may host an optional compatible desktop or WebUI adapter, but the host shell must not redefine review state, approval, capability, correction, revocation, or canonical-state semantics.
 
 For the portable device-trust foundation:
 
