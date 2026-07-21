@@ -1,5 +1,5 @@
 site_name: QSO-STUDIO
-site_description: Documentation-first design for a read-only QSO evidence-review workspace
+site_description: Documentation-first design for a read-only QSO and portable-trust evidence-review workspace
 repo_url: https://github.com/aevespers2/QSO-STUDIO
 repo_name: aevespers2/QSO-STUDIO
 edit_uri: edit/main/docs/
@@ -14,6 +14,8 @@ nav:
   - Project overview: project-overview.md
   - Architecture: architecture.md
   - Design contracts: design.md
+  - Portable trust review: portable-trust-review-profile.md
+  - Obstruction and gluing: obstruction-and-gluing.md
   - Workflows:
       - Evidence review: workflows/evidence-review.md
   - Security and privacy: security-privacy.md
