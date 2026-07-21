@@ -25,6 +25,7 @@ nav:
   - Operations and recovery: operations.md
   - Decisions:
       - ADR-0001 — Read-only boundary: decisions/0001-read-only-review-boundary.md
+      - ADR-0002 — Studio and AionUi boundary: decisions/0002-review-surface-and-aionui-boundary.md
 markdown_extensions:
   - admonition
   - attr_list
