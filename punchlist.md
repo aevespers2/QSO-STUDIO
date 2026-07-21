@@ -12,12 +12,12 @@ This checklist records evidence. A documentation file existing is not by itself 
 | Approve first supported platform and distribution model | BLOCKED | Accepted ADR |
 | Approve ecosystem role and canonical contract owners | BLOCKED | Versioned integration map |
 | Approve QSO-STUDIO as domain-neutral review-contract owner or designate an alternative | BLOCKED | Governance decision and migration plan |
-| Approve AionUi host-adapter boundary and prohibit competing review semantics | BLOCKED | Cross-repository ADR and shared fixtures |
+| Approve ADR-0002 and AionUi host-adapter boundary; prohibit competing review semantics | BLOCKED | Accepted cross-repository ADR and shared fixtures |
 | Approve data classification, privacy, redaction, caching, export, and retention defaults | BLOCKED | Privacy decision and reviewer |
 | Approve license and support/security ownership | BLOCKED | Repository metadata and policy |
-| Separate display, annotation, proposal, approval, capability, execution, repository writes, canonical state, and payment authority | REVIEW | Architecture, portable-trust profile, and ADR review |
+| Separate display, annotation, proposal, approval, capability, execution, repository writes, canonical state, and payment authority | REVIEW | Architecture, portable-trust profile, ADR-0001, and ADR-0002 review |
 | Replace unsupported Pages claim with truthful build status | REVIEW | README, workflow, strict build result |
-| Add project overview, architecture, design, portable-trust, gluing, workflow, onboarding, security, accessibility, and operations docs | REVIEW | Documentation PR |
+| Add project overview, architecture, design, portable-trust, gluing, workflow, onboarding, security, accessibility, operations, and decision docs | REVIEW | Documentation PR |
 
 ## P1 — Reproducible documentation artifact
 
@@ -25,7 +25,7 @@ This checklist records evidence. A documentation file existing is not by itself 
 |---|---|---|
 | Strict MkDocs configuration | DONE | `mkdocs.yml` and successful exact-branch build |
 | Pinned CI documentation toolchain | DONE | Successful Documentation workflow run |
-| Internal link and navigation validation | REVIEW | Exact-head `mkdocs build --strict` after portable-trust additions |
+| Internal link and navigation validation | REVIEW | Exact-head `mkdocs build --strict` after ADR-0002 additions |
 | Accessibility review of documentation | OPEN | Keyboard, heading, link, table, diagram-alternative, and critical-state review |
 | Security/privacy review of documentation and workflow | OPEN | Permission, dependency, redaction, and public-build review |
 | Artifact checksum and provenance | REVIEW | Exact-head artifact digest and workflow metadata retained in pull request evidence |
@@ -55,7 +55,7 @@ This checklist records evidence. A documentation file existing is not by itself 
 | Approve Repository `0`/`1` route and identities | BLOCKED | Accepted portable-trust contract |
 | Approve JusticeForMe/PhantomBlock observation vocabulary and conflict semantics | BLOCKED | Shared adapter fixtures |
 | Approve Repository `1` disposition, correction, revocation, and recovery semantics | BLOCKED | Authority contract and owner |
-| Approve QSO-STUDIO ↔ AionUi review compatibility contract | BLOCKED | Shared positive and negative fixtures |
+| Approve QSO-STUDIO ↔ AionUi review compatibility contract and ADR-0002 | BLOCKED | Shared positive and negative fixtures |
 | Wrong-device and wrong-workspace rejection | OPEN | Deterministic fixtures |
 | Stale and replayed record handling | OPEN | Deterministic fixtures |
 | Partial and conflicting observation handling | OPEN | Deterministic fixtures |
@@ -80,6 +80,7 @@ This checklist records evidence. A documentation file existing is not by itself 
 
 ## Evidence log
 
-- 2026-07-21 — Added the portable-trust review profile, twenty-item obstruction ledger, pairwise gluing matrix, triple-overlap witnesses, and expanded release blockers. Exact-head validation is pending after these changes.
+- 2026-07-21 — Added ADR-0002 with the proposed QSO-STUDIO domain-neutral review-contract and AionUi optional host-adapter split, explicit acceptance conditions, rejected alternatives, and rollback procedure. Exact-head validation is pending after this change.
+- 2026-07-21 — Added the portable-trust review profile, twenty-item obstruction ledger, pairwise gluing matrix, triple-overlap witnesses, and expanded release blockers.
 - 2026-07-19 — Documentation workflow passed the pinned strict build and produced the `qso-studio-site` artifact; exact-head identifiers and digest are retained in the pull request evidence.
 - 2026-07-19 — Consent Capacity Lock passed on the documentation candidate. Charter, publication, application, and release approval remain blocked or in review.
