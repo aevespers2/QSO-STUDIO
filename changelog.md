@@ -12,6 +12,7 @@
 
 ### Documentation
 
+- 2026-07-21 — Added ADR-0002 defining the proposed QSO-STUDIO review-contract and AionUi host-adapter boundary, including acceptance conditions, rejected alternatives, and rollback.
 - 2026-07-21 — Added a portable-trust review profile covering observations, proposals, dispositions, capabilities, receipts, reconciliation, corrections, revocations, recovery, accessibility, privacy, and fail-closed behavior.
 - 2026-07-21 — Added a twenty-item obstruction and gluing ledger, pairwise contract matrix, triple-overlap witnesses, ownership decisions, deterministic fixture groups, and release blockers.
 - 2026-07-21 — Updated Pages navigation, README, task chain, punch list, release plan, and this changelog for the expanded documentation candidate.
@@ -21,8 +22,8 @@
 
 ### Architecture
 
+- 2026-07-21 — ADR-0002 proposed that QSO-STUDIO own the domain-neutral review model and AionUi implement only an optional compatible host adapter, while Repository `1` and external human authorities retain disposition and approval.
 - 2026-07-21 — Required separate identities for source observation, interpretation, proposal, quarantine, disposition, capability, execution, receipt, canonical reconciliation, annotation, export, correction, revocation, and recovery checkpoint.
-- 2026-07-21 — Proposed the lowest-coupling QSO-STUDIO/AionUi split: Studio owns the domain-neutral review model and accessibility semantics; AionUi hosts an optional adapter without redefining authority.
 - 2026-07-21 — Added portable-trust pairwise and triple-overlap gluing requirements across adapters, Repositories `0` and `1`, executors, Bridge/Digitalis, Studio, AionUi, corrections, revocations, and emergency recovery.
 - 2026-07-19 — Proposed ADR-0001: Studio begins as a local read-only evidence-review boundary with no upstream write, execution, signing, payment, or autonomous approval client.
 - 2026-07-19 — Defined input, parser, validator, normalization, comparison, presentation, export, diagnostic, and external-authority boundaries.
@@ -32,6 +33,7 @@
 
 - 2026-07-21 — Added fail-closed wrong-device, wrong-workspace, unsupported-version, stale, replay, partial, privacy-downgrade, broadened-capability, expiry, revocation, correction, and emergency-freeze requirements.
 - 2026-07-21 — Prohibited public Pages from containing real device inventories, credentials, privileged operations, or sensitive evidence and required correction/revocation propagation through views, caches, sessions, and exports.
+- 2026-07-21 — Required disabling the AionUi adapter and reverting to the last accepted read-only renderer if the shared host boundary becomes unsafe, inaccessible, or incompatible.
 - 2026-07-19 — Defined bounded parsing, inert rendering, exact contract selection, digest verification, local-only defaults, diagnostic redaction, and no-secret/no-write controls.
 - 2026-07-19 — Bound future Studio work to the immutable `QSO-CONSENT-CAPACITY-LOCK-v1` policy.
 - 2026-07-19 — Confirmed that the candidate passed the repository Consent Capacity Lock workflow.
@@ -48,7 +50,7 @@
 
 ### Release
 
-- 2026-07-21 — Marked exact-head documentation validation pending after adding portable-trust and gluing documentation; earlier passing artifacts remain evidence only for their prior head.
+- 2026-07-21 — Marked exact-head documentation validation pending after adding ADR-0002 and its coordination updates; earlier passing artifacts remain evidence only for their prior head.
 - 2026-07-19 — The pinned strict documentation build completed successfully and produced the `qso-studio-site` artifact with recorded SHA-256 provenance.
 - 2026-07-19 — Kept charter, publication, accessibility/security review, and release approval blocked or in review.
 - 2026-07-16 — Kept the charter/documentation candidate blocked by approval, repository mapping, build, accessibility, security/privacy, provenance, and rollback requirements.
