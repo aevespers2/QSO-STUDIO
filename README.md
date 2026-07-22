@@ -1,8 +1,8 @@
 # QSO-STUDIO
 
-QSO-STUDIO is the proposed domain-neutral operator and developer workspace for inspecting Quantum State Objects (QSOs), genomes, evidence, messages, proposals, freeze points, portable device-trust records, payment records, and release state across the QSO ecosystem.
+QSO-STUDIO is the proposed domain-neutral operator and developer workspace for inspecting Quantum State Objects (QSOs), genomes, evidence, messages, proposals, freeze points, portable device-trust records, payment records, release state, and architecture-review records across the QSO ecosystem.
 
-The repository is currently **documentation-first**. It does not contain a verified Studio application, runtime executor, payment controller, repository writer, device inspector, remediation client, credential store, or autonomous approval system. The first bounded product target is a fixture-backed, read-only evidence-review workflow that preserves the authority of upstream runtimes, Repository `1`, and human reviewers.
+The repository is currently **documentation-first**. It does not contain a verified Studio application, runtime executor, payment controller, repository writer, device inspector, remediation client, credential store, reviewer registry, or autonomous approval system. The first bounded product target is a fixture-backed, read-only evidence-review workflow that preserves the authority of upstream runtimes, Repository `1`, and human reviewers.
 
 ## Current status
 
@@ -15,8 +15,9 @@ The repository is currently **documentation-first**. It does not contain a verif
 | Studio application | Not implemented |
 | Read-only workflow | Specified, not implemented |
 | Portable trust review profile | Candidate contract; not implemented or approved |
+| Architecture-review quorum consumer | Synthetic, read-only conformance candidate; no real reviewer or quorum authority |
 | Studio/AionUi ownership split | Proposed in ADR-0002; not approved |
-| Runtime, device-control, repository-write, or payment authority | Explicitly out of scope |
+| Runtime, device-control, repository-write, reviewer, or payment authority | Explicitly out of scope |
 
 ## Documentation
 
@@ -25,6 +26,7 @@ The Pages-ready documentation includes:
 - [Project overview](docs/project-overview.md)
 - [Architecture and trust boundaries](docs/architecture.md)
 - [Design contracts](docs/design.md)
+- [Architecture-review quorum conformance](docs/architecture-review-quorum-conformance.md)
 - [Portable trust review profile](docs/portable-trust-review-profile.md)
 - [Obstruction and gluing analysis](docs/obstruction-and-gluing.md)
 - [Read-only evidence-review workflow](docs/workflows/evidence-review.md)
@@ -46,9 +48,18 @@ mkdocs build --strict
 
 On Windows PowerShell, replace the environment-start command with `.venv\Scripts\Activate.ps1`.
 
+Run the independent synthetic quorum consumer with:
+
+```bash
+python3 scripts/check_architecture_review_quorum_consumer.py
+python3 -m unittest tests.test_check_architecture_review_quorum_consumer -v
+```
+
 ## Portfolio role
 
 QSO-STUDIO is the candidate owner of the **domain-neutral review contract**, normalized review model, accessibility requirements, and non-authoritative export semantics. ADR-0002 proposes that AionUi may host an optional compatible desktop or WebUI adapter, but the host shell must not redefine review state, approval, capability, correction, revocation, or canonical-state semantics.
+
+The architecture-review quorum consumer independently evaluates the same canonical twelve-case synthetic payload as QSO Field governance PR #24. Matching synthetic outcomes demonstrate parser and rule compatibility only; they do not accept the proposed contract, appoint or qualify reviewers, satisfy a real quorum, create an architecture decision, or activate implementation.
 
 For the portable device-trust foundation:
 
@@ -68,6 +79,7 @@ The following are not implied by this repository:
 - device inspection, network probing, traffic interception, or remote administration;
 - unrestricted writes to ecosystem repositories;
 - credential storage or signing authority;
+- reviewer qualification, appointment, quorum, architecture decision, or activation authority;
 - Repository `1` disposition or capability issuance;
 - production payment initiation or settlement;
 - autonomous release approval;
