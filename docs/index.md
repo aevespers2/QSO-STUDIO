@@ -1,6 +1,6 @@
 # QSO-STUDIO
 
-QSO-STUDIO is a proposed visual workspace for reviewing evidence about Quantum State Objects, portable device-trust records, and related ecosystem artifacts. Its first bounded outcome is not a general-purpose orchestration console; it is a **read-only, fixture-backed review surface** that helps a researcher or operator understand what upstream systems report without granting Studio authority to execute, approve, write, sign, remediate, issue capabilities, or settle anything.
+QSO-STUDIO is a proposed visual workspace for reviewing evidence about Quantum State Objects, portable device-trust records, architecture-review records, and related ecosystem artifacts. Its first bounded outcome is not a general-purpose orchestration console; it is a **read-only, fixture-backed review surface** that helps a researcher or operator understand what upstream systems report without granting Studio authority to execute, approve, appoint reviewers, decide architecture, write, sign, remediate, issue capabilities, or settle anything.
 
 ## Documentation status
 
@@ -12,6 +12,7 @@ This site describes a product charter, review contract, and architecture candida
 | Architecture and authority boundaries | Proposed | Not implemented |
 | Evidence-review workflow | Specified | Not implemented |
 | Portable trust review profile | Proposed | Not implemented |
+| Architecture-review quorum consumer | Synthetic conformance candidate | Documentation and validation tooling only |
 | Obstruction and gluing analysis | Defined as engineering review | Not an operational compatibility claim |
 | Accessible interaction requirements | Defined | Not implemented |
 | Security and privacy controls | Defined | Not implemented |
@@ -20,7 +21,7 @@ This site describes a product charter, review contract, and architecture candida
 
 ## The essential boundary
 
-Studio receives versioned, attributable records and renders them for review. Any annotation, comparison, proposal, or export produced in Studio remains non-authoritative until an external authorized system and designated human reviewer create the applicable disposition or approval record.
+Studio receives versioned, attributable records and renders them for review. Any annotation, comparison, proposal, quorum projection, or export produced in Studio remains non-authoritative until an external authorized system and designated human reviewer create the applicable disposition, decision, or approval record.
 
 ```text
 Observation / interpretation / proposal / disposition / receipt
@@ -40,7 +41,20 @@ Observation / interpretation / proposal / disposition / receipt
         Repository 1 and external human authority
 ```
 
-Studio does not become the source of truth simply because it offers a convenient interface. Display, selection, annotation, export, or execution success cannot become approval or canonical acceptance.
+Studio does not become the source of truth simply because it offers a convenient interface. Display, selection, annotation, export, synthetic quorum completion, or execution success cannot become approval, architecture decision, activation, or canonical acceptance.
+
+## Architecture-review quorum role
+
+QSO-STUDIO independently evaluates the same canonical twelve-case synthetic payload as the QSO Field governance candidate. The consumer preserves exact-source, reviewer-class, qualification, appointment, acceptance, conflict, independence, disposition, quorum, dissent, appeal, and supersession distinctions. Matching synthetic outcomes demonstrate bounded parser and rule compatibility only.
+
+```text
+synthetic conformance
+!= accepted review policy
+!= reviewer appointment
+!= real quorum
+!= architecture decision
+!= activation
+```
 
 ## Portable device-trust role
 
@@ -59,13 +73,14 @@ The current material obstruction is that QSO-STUDIO and AionUi overlap as review
 1. Read the [project overview](project-overview.md) for users, goals, and scope.
 2. Review the [architecture](architecture.md) for data flow and trust boundaries.
 3. Examine the [design contracts](design.md) and [evidence-review workflow](workflows/evidence-review.md).
-4. Read the [portable trust review profile](portable-trust-review-profile.md) for Repository `0`/`1`, adapter, executor, AionUi, correction, revocation, and recovery boundaries.
-5. Review the [obstruction and gluing analysis](obstruction-and-gluing.md) for active incompatibilities and required pairwise and triple-overlap fixtures.
-6. Use the [developer onboarding guide](development/onboarding.md) to build and review the documentation.
-7. Consult [operations and recovery](operations.md) before publishing any documentation artifact.
+4. Review the [architecture-review quorum conformance](architecture-review-quorum-conformance.md) for the synthetic second-consumer boundary.
+5. Read the [portable trust review profile](portable-trust-review-profile.md) for Repository `0`/`1`, adapter, executor, AionUi, correction, revocation, and recovery boundaries.
+6. Review the [obstruction and gluing analysis](obstruction-and-gluing.md) for active incompatibilities and required pairwise and triple-overlap fixtures.
+7. Use the [developer onboarding guide](development/onboarding.md) to build and review the documentation.
+8. Consult [operations and recovery](operations.md) before publishing any documentation artifact.
 
 ## Approval still required
 
-The product/UX charter still needs an explicit decision on target users, first supported platform, distribution model, privacy and retention defaults, license, ecosystem ownership, QSO-STUDIO versus AionUi responsibilities, generic envelope and profile-registry ownership, Repository `1` disposition semantics, and the upstream contracts authoritative for the first fixture-backed workflow.
+The product/UX charter still needs an explicit decision on target users, first supported platform, distribution model, privacy and retention defaults, license, ecosystem ownership, QSO-STUDIO versus AionUi responsibilities, generic envelope and profile-registry ownership, reviewer classes and qualification, appointment and acceptance, quorum and independence, appeals and emergency review, Repository `1` disposition semantics, and the upstream contracts authoritative for the first fixture-backed workflow.
 
 Until those decisions and exact-head validation are recorded, this site remains a review candidate rather than a product release.
