@@ -86,15 +86,14 @@ class QSOStudioQuorumConsumerTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "unknown"):
                 run_extension(path)
 
-    def test_extension_reason_drift_is_detected(self) -> None:
+    def test_extension_reason_drift_fails_closed(self) -> None:
         corpus = copy.deepcopy(self.extension)
         corpus["cases"][1]["expected"]["reasons"] = []
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "drift.json"
             path.write_text(json.dumps(corpus), encoding="utf-8")
-            result = run_extension(path)
-            self.assertEqual(result["result"], "FAIL")
-            self.assertFalse(result["canonical_payload_matches"])
+            with self.assertRaisesRegex(ValueError, "cover every disposition and reason"):
+                run_extension(path)
 
 
 if __name__ == "__main__":
