@@ -4,6 +4,7 @@
 
 ### Product
 
+- 2026-07-23 — Added a documentation-only QSO-STUDIO consumer for architecture-review quorum state; it cannot appoint reviewers, satisfy a real quorum, decide architecture, or activate implementation.
 - 2026-07-21 — Defined QSO-STUDIO as the candidate domain-neutral review-contract owner for portable device-trust and wider QSO evidence, with AionUi limited to an optional compatible host adapter.
 - 2026-07-21 — Preserved Repository `1`, external human approval, executors, source adapters, and runtime systems as separate authorities outside Studio.
 - 2026-07-19 — Expanded the proposed user outcome into one deterministic, fixture-backed, read-only evidence-review workflow.
@@ -12,6 +13,8 @@
 
 ### Documentation
 
+- 2026-07-23 — Added the architecture-review quorum conformance guide, diagram with prose alternative, reproduction commands, correction and rollback rules, and Pages navigation.
+- 2026-07-23 — Aligned README, task chain, release plan, and this changelog with the synthetic conformance boundary.
 - 2026-07-21 — Added ADR-0002 defining the proposed QSO-STUDIO review-contract and AionUi host-adapter boundary, including acceptance conditions, rejected alternatives, and rollback.
 - 2026-07-21 — Added a portable-trust review profile covering observations, proposals, dispositions, capabilities, receipts, reconciliation, corrections, revocations, recovery, accessibility, privacy, and fail-closed behavior.
 - 2026-07-21 — Added a twenty-item obstruction and gluing ledger, pairwise contract matrix, triple-overlap witnesses, ownership decisions, deterministic fixture groups, and release blockers.
@@ -22,6 +25,7 @@
 
 ### Architecture
 
+- 2026-07-23 — Bound QSO-STUDIO to a read-only projection of `REVIEW_INCOMPLETE`, `REVIEW_COMPLETE_PENDING_DECISION`, `APPEAL_REVIEW_PENDING`, and `SUPERSEDED_REVIEW`; review completion remains separate from any decision or activation.
 - 2026-07-21 — ADR-0002 proposed that QSO-STUDIO own the domain-neutral review model and AionUi implement only an optional compatible host adapter, while Repository `1` and external human authorities retain disposition and approval.
 - 2026-07-21 — Required separate identities for source observation, interpretation, proposal, quarantine, disposition, capability, execution, receipt, canonical reconciliation, annotation, export, correction, revocation, and recovery checkpoint.
 - 2026-07-21 — Added portable-trust pairwise and triple-overlap gluing requirements across adapters, Repositories `0` and `1`, executors, Bridge/Digitalis, Studio, AionUi, corrections, revocations, and emergency recovery.
@@ -29,8 +33,15 @@
 - 2026-07-19 — Defined input, parser, validator, normalization, comparison, presentation, export, diagnostic, and external-authority boundaries.
 - 2026-07-16 — Recorded that Studio must separate visualization and proposal review from human approval, runtime execution, repository mutation, and settlement authority.
 
+### Conformance
+
+- 2026-07-23 — Added a canonical twelve-case architecture-review quorum payload with SHA-256 `a8b65c3fce4b7cf80fdefab76c497720b2bf17086d431a53f9bacf82e58bd9ec`.
+- 2026-07-23 — Added a separately implemented rule-pipeline evaluator and five hostile regression tests covering source drift, self-review, common-control collapse, appeal non-execution, and fixture tampering.
+- 2026-07-23 — Added an exact-head retained-evidence workflow. Matching synthetic outcomes establish only pairwise conformance for the recorded proposed contract generation.
+
 ### Security
 
+- 2026-07-23 — Rejected repository permission, UI interaction, labels, comments, credentials, abstentions, recusals, or review completion as implicit reviewer appointment, quorum, decision, or activation authority.
 - 2026-07-21 — Added fail-closed wrong-device, wrong-workspace, unsupported-version, stale, replay, partial, privacy-downgrade, broadened-capability, expiry, revocation, correction, and emergency-freeze requirements.
 - 2026-07-21 — Prohibited public Pages from containing real device inventories, credentials, privileged operations, or sensitive evidence and required correction/revocation propagation through views, caches, sessions, and exports.
 - 2026-07-21 — Required disabling the AionUi adapter and reverting to the last accepted read-only renderer if the shared host boundary becomes unsafe, inaccessible, or incompatible.
@@ -40,16 +51,19 @@
 
 ### Accessibility
 
+- 2026-07-23 — Added prose alternatives for the quorum-evaluation diagram and required typed, non-color state presentation.
 - 2026-07-21 — Required typed text labels and non-color presentation for wrong-device, stale, partial, unsupported, revoked, privacy-restricted, and emergency-freeze states.
 - 2026-07-19 — Defined keyboard, focus, semantics, contrast, scaling, reduced-motion, visualization-alternative, and error-recovery requirements with an evidence matrix.
 
 ### Fixed
 
+- 2026-07-23 — Prevented synthetic review completion from being promoted into an architecture decision or implementation activation.
 - 2026-07-21 — Prevented display, selection, annotation, export, or execution success from being described as approval or canonical acceptance.
 - 2026-07-19 — Replaced the unsupported claim that a Pages site is already published with accurate build, artifact, and publication states.
 
 ### Release
 
+- 2026-07-23 — Added a new exact-head architecture-review quorum consumer workflow; passing evidence remains pending for the final submitted head.
 - 2026-07-21 — Marked exact-head documentation validation pending after adding ADR-0002 and its coordination updates; earlier passing artifacts remain evidence only for their prior head.
 - 2026-07-19 — The pinned strict documentation build completed successfully and produced the `qso-studio-site` artifact with recorded SHA-256 provenance.
 - 2026-07-19 — Kept charter, publication, accessibility/security review, and release approval blocked or in review.
@@ -57,6 +71,7 @@
 
 ### Deployment
 
+- 2026-07-23 — Confirmed that synthetic quorum conformance does not authorize a reviewer registry, architecture-decision service, activation controller, or Pages deployment.
 - 2026-07-21 — Confirmed that the expanded documentation does not authorize a privileged Studio or AionUi backend, device control, Repository `1` authority, or public operational console.
 - 2026-07-19 — Added a documentation build artifact workflow only; no GitHub Pages deployment or application distribution is authorized.
 - 2026-07-16 — Recorded that no site or application deployment is authorized until repository publication claims correspond to real, reproducible artifacts.
@@ -64,7 +79,7 @@
 ## Entry format
 
 - Date
-- Category: Product / Documentation / Architecture / Added / Changed / Fixed / Security / Accessibility / Release / Deployment
+- Category: Product / Documentation / Architecture / Conformance / Added / Changed / Fixed / Security / Accessibility / Release / Deployment
 - Summary
 - Evidence: issue, PR, commit, workflow, artifact, or deployment record
 - Impact and migration notes where applicable
