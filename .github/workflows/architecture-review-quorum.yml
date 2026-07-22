@@ -5,6 +5,7 @@ on:
     paths:
       - "docs/architecture-review-quorum-conformance.md"
       - "fixtures/architecture-review-quorum-v1.json"
+      - "fixtures/architecture-review-quorum-extension-v1.json"
       - "scripts/check_architecture_review_quorum_consumer.py"
       - "tests/test_check_architecture_review_quorum_consumer.py"
       - "mkdocs.yml"
@@ -18,6 +19,7 @@ on:
     paths:
       - "docs/architecture-review-quorum-conformance.md"
       - "fixtures/architecture-review-quorum-v1.json"
+      - "fixtures/architecture-review-quorum-extension-v1.json"
       - "scripts/check_architecture_review_quorum_consumer.py"
       - "tests/test_check_architecture_review_quorum_consumer.py"
       - "mkdocs.yml"
@@ -67,6 +69,7 @@ jobs:
           required=(
             docs/architecture-review-quorum-conformance.md
             fixtures/architecture-review-quorum-v1.json
+            fixtures/architecture-review-quorum-extension-v1.json
             scripts/check_architecture_review_quorum_consumer.py
             tests/test_check_architecture_review_quorum_consumer.py
             mkdocs.yml
@@ -118,6 +121,7 @@ jobs:
           sha256sum \
             docs/architecture-review-quorum-conformance.md \
             fixtures/architecture-review-quorum-v1.json \
+            fixtures/architecture-review-quorum-extension-v1.json \
             scripts/check_architecture_review_quorum_consumer.py \
             tests/test_check_architecture_review_quorum_consumer.py \
             mkdocs.yml \
