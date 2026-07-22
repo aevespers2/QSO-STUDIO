@@ -6,21 +6,28 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.check_architecture_review_quorum_consumer import project, run
+from scripts.check_architecture_review_quorum_consumer import project, run, run_extension
 
-
-FIXTURE = Path("fixtures/architecture-review-quorum-v1.json")
+BASE_FIXTURE = Path("fixtures/architecture-review-quorum-v1.json")
+EXTENSION_FIXTURE = Path("fixtures/architecture-review-quorum-extension-v1.json")
 
 
 class QSOStudioQuorumConsumerTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.corpus = json.loads(FIXTURE.read_text(encoding="utf-8"))
+        cls.corpus = json.loads(BASE_FIXTURE.read_text(encoding="utf-8"))
+        cls.extension = json.loads(EXTENSION_FIXTURE.read_text(encoding="utf-8"))
 
     def test_consumer_matches_all_committed_cases(self) -> None:
-        result = run(FIXTURE)
+        result = run(BASE_FIXTURE)
         self.assertEqual(result["result"], "PASS")
         self.assertTrue(result["canonical_payload_matches"])
+
+    def test_extension_matches_all_committed_cases(self) -> None:
+        result = run_extension(EXTENSION_FIXTURE)
+        self.assertEqual(result["result"], "PASS")
+        self.assertTrue(result["canonical_payload_matches"])
+        self.assertEqual(result["case_count"], 9)
 
     def test_incompatible_self_review_is_rejected(self) -> None:
         case = copy.deepcopy(self.corpus["cases"][0])
@@ -50,6 +57,42 @@ class QSOStudioQuorumConsumerTests(unittest.TestCase):
             path = Path(directory) / "tampered.json"
             path.write_text(json.dumps(corpus), encoding="utf-8")
             result = run(path)
+            self.assertEqual(result["result"], "FAIL")
+            self.assertFalse(result["canonical_payload_matches"])
+
+    def test_duplicate_keys_fail_closed(self) -> None:
+        text = EXTENSION_FIXTURE.read_text(encoding="utf-8")
+        text = text.replace('"profile_version": "1.0.0",', '"profile_version": "1.0.0",\n  "profile_version": "1.0.0",', 1)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "duplicate.json"
+            path.write_text(text, encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "duplicate key"):
+                run_extension(path)
+
+    def test_non_finite_numbers_fail_closed(self) -> None:
+        text = EXTENSION_FIXTURE.read_text(encoding="utf-8").replace('"base_case_count": 12', '"base_case_count": NaN', 1)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "nonfinite.json"
+            path.write_text(text, encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "non-finite"):
+                run_extension(path)
+
+    def test_extension_unknown_field_fails_closed(self) -> None:
+        corpus = copy.deepcopy(self.extension)
+        corpus["cases"][0]["unexpected"] = True
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "unknown.json"
+            path.write_text(json.dumps(corpus), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "unknown"):
+                run_extension(path)
+
+    def test_extension_reason_drift_is_detected(self) -> None:
+        corpus = copy.deepcopy(self.extension)
+        corpus["cases"][1]["expected"]["reasons"] = []
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "drift.json"
+            path.write_text(json.dumps(corpus), encoding="utf-8")
+            result = run_extension(path)
             self.assertEqual(result["result"], "FAIL")
             self.assertFalse(result["canonical_payload_matches"])
 
