@@ -1,0 +1,154 @@
+name: Ecosystem Conformance Consumer
+
+on:
+  push:
+    branches:
+      - repair/ecosystem-conformance-consumer
+      - docs/studio-documentation-foundation
+    paths:
+      - contracts/qso-ecosystem-consumer-source-v1.json
+      - fixtures/qso-fabric-manifest-v1.json
+      - scripts/check_ecosystem_conformance_consumer.py
+      - tests/test_check_ecosystem_conformance_consumer.py
+      - docs/ecosystem-conformance-consumer.md
+      - mkdocs.yml
+      - .github/workflows/ecosystem-conformance-consumer.yml
+  pull_request:
+    paths:
+      - contracts/qso-ecosystem-consumer-source-v1.json
+      - fixtures/qso-fabric-manifest-v1.json
+      - scripts/check_ecosystem_conformance_consumer.py
+      - tests/test_check_ecosystem_conformance_consumer.py
+      - docs/ecosystem-conformance-consumer.md
+      - mkdocs.yml
+      - .github/workflows/ecosystem-conformance-consumer.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ecosystem-consumer-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      EXPECTED_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Check out exact submitted source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ env.EXPECTED_HEAD_SHA }}
+          persist-credentials: false
+
+      - name: Assert exact clean source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD_SHA"
+          test -z "$(git status --porcelain)"
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.12"
+
+      - name: Run independent hostile regressions
+        id: tests
+        shell: bash
+        run: |
+          set +e
+          evidence="$RUNNER_TEMP/ecosystem-consumer-evidence"
+          mkdir -p "$evidence"
+          python -m unittest -v tests.test_check_ecosystem_conformance_consumer \
+            2>&1 | tee "$evidence/tests.log"
+          status=${PIPESTATUS[0]}
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Validate frozen producer fixture independently
+        id: consumer
+        shell: bash
+        run: |
+          set +e
+          evidence="$RUNNER_TEMP/ecosystem-consumer-evidence"
+          python scripts/check_ecosystem_conformance_consumer.py \
+            2>&1 | tee "$evidence/consumer-result.json"
+          status=${PIPESTATUS[0]}
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Generate deterministic evidence
+        if: always()
+        shell: bash
+        env:
+          TEST_STATUS: ${{ steps.tests.outputs.status }}
+          CONSUMER_STATUS: ${{ steps.consumer.outputs.status }}
+        run: |
+          set -euo pipefail
+          evidence="$RUNNER_TEMP/ecosystem-consumer-evidence"
+          mkdir -p "$evidence"
+          printf '%s\n' "$EXPECTED_HEAD_SHA" > "$evidence/exact-head.txt"
+          python --version > "$evidence/python-version.txt" 2>&1
+          git status --porcelain > "$evidence/worktree-status.txt"
+          sha256sum \
+            contracts/qso-ecosystem-consumer-source-v1.json \
+            fixtures/qso-fabric-manifest-v1.json \
+            scripts/check_ecosystem_conformance_consumer.py \
+            tests/test_check_ecosystem_conformance_consumer.py \
+            docs/ecosystem-conformance-consumer.md \
+            mkdocs.yml \
+            .github/workflows/ecosystem-conformance-consumer.yml \
+            > "$evidence/source-sha256.txt"
+          TEST_STATUS="$TEST_STATUS" CONSUMER_STATUS="$CONSUMER_STATUS" \
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          evidence = Path(os.environ["RUNNER_TEMP"]) / "ecosystem-consumer-evidence"
+          summary = {
+              "expected_head_sha": os.environ["EXPECTED_HEAD_SHA"],
+              "test_status": int(os.environ.get("TEST_STATUS") or 1),
+              "consumer_status": int(os.environ.get("CONSUMER_STATUS") or 1),
+              "producer_repository": "aevespers2/QSO-FABRIC",
+              "producer_pr": 21,
+              "producer_head": "738cf25aec9b2bae0b71c50374585bab36934ef3",
+              "fixture_relation": "BYTE_IDENTICAL",
+              "authority_effect": "none",
+              "deployment_authority": False,
+              "publication_authority": False,
+              "credential_authority": False,
+          }
+          (evidence / "summary.json").write_text(
+              json.dumps(summary, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          PY
+          find "$evidence" -type f ! -name evidence-sha256.txt -print0 \
+            | sort -z \
+            | xargs -0 sha256sum \
+            > "$evidence/evidence-sha256.txt"
+
+      - name: Retain exact-head evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ecosystem-conformance-consumer-${{ env.EXPECTED_HEAD_SHA }}
+          path: ${{ runner.temp }}/ecosystem-consumer-evidence
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Fail closed on any incomplete gate
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ steps.tests.outputs.status }}" = "0"
+          test "${{ steps.consumer.outputs.status }}" = "0"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD_SHA"
+          test -z "$(git status --porcelain)"
