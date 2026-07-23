@@ -40,6 +40,7 @@
 - Distinguished passing documentation, manifest, and review-corpus checks from charter approval, publication approval, ecosystem admission, reviewer appointment, real quorum, architecture decision, interface acceptance, release approval, and implementation authority.
 - Rebuilt the useful QSO-STUDIO PR #4 consumers from current `main` rather than force-updating a diverged branch.
 - Rebound the architecture-review source tuple from historical QSO Field head `49a93b25f1b04c13b97fef93a786afa4bf1048c4` to current PR #24 head `a56b1fa93f151ee14f3cdd4183b89a10e268e352` while preserving the independent evaluator and corpus identities.
+- 2026-07-23 — Extended documentation validation to relevant `main` pushes so future resulting-default heads receive their own retained exact-head evidence generation.
 
 ### Fixed
 - Removed the contradiction between the README's former `docs/`/Pages claim and the repository's actual contents.
@@ -47,6 +48,7 @@
 - Prevented annotations and exported review packets from being described as repository or runtime changes.
 - Prevented stale PR #4 exact-head evidence from being represented as current after `main` advanced.
 - Added fail-closed source-tuple drift, raw-byte drift, duplicate-key, non-finite-number, Boolean/integer confusion, unsafe-default, identifier, version, governance, self-review, quorum, dissent, appeal, supersession, and authority-promotion checks.
+- Closed the documentation workflow gap that previously left resulting `main` documentation heads without automatic retained validation.
 
 ### Security
 - Required synthetic and non-sensitive public materials, inert rendering, strict inputs, least privilege, explicit network/storage policy, source provenance, dependency review, and rollback propagation.
