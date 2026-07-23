@@ -19,6 +19,7 @@ REQUIRED = [
     "docs/architecture.md",
     "docs/read-only-review-workflow.md",
     "docs/integration-contracts.md",
+    "docs/ecosystem-conformance-consumer.md",
     "docs/onboarding.md",
     "docs/developer-guide.md",
     "docs/accessibility.md",
