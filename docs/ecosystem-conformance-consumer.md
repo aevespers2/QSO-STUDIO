@@ -35,7 +35,7 @@ flowchart LR
     E --> F[Read-only review surface]
 ```
 
-**Diagram alternative:** An immutable QSO-FABRIC source tuple binds the exact producer head, path, Git blob, and SHA-256. QSO-STUDIO checks its local fixture bytes, parses them with an independent strict parser, applies a separately implemented closed-contract evaluator, and produces a read-only synthetic result. No stage grants operational authority.
+**Equivalent prose:** An immutable QSO-FABRIC source tuple binds the exact producer head, path, Git blob, and SHA-256. QSO-STUDIO checks its local fixture bytes, parses them with an independent strict parser, applies a separately implemented closed-contract evaluator, and produces a read-only synthetic result. No stage grants operational authority.
 
 ## Reproduction
 
@@ -75,3 +75,5 @@ Proposed non-authoritative gap: `031-M — cross-repository consumer rebinding a
 ## Remaining blockers
 
 Human architecture review must still decide the conformance levels, governance semantics, neutral contract custody, source refresh and supersession process, signed evidence and trusted time, migration and rollback rules, cross-repository interface fixtures, security, licensing, accessibility, and resulting-default-branch validation.
+
+This documentation and consumer candidate are governed by `QSO-CONSENT-CAPACITY-LOCK-v1`.
