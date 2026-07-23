@@ -11,6 +11,7 @@ on:
       - scripts/check_ecosystem_conformance_consumer.py
       - tests/test_check_ecosystem_conformance_consumer.py
       - docs/ecosystem-conformance-consumer.md
+      - mkdocs.yml
       - .github/workflows/ecosystem-conformance-consumer.yml
   pull_request:
     paths:
@@ -19,6 +20,7 @@ on:
       - scripts/check_ecosystem_conformance_consumer.py
       - tests/test_check_ecosystem_conformance_consumer.py
       - docs/ecosystem-conformance-consumer.md
+      - mkdocs.yml
       - .github/workflows/ecosystem-conformance-consumer.yml
   workflow_dispatch:
 
@@ -99,6 +101,7 @@ jobs:
             scripts/check_ecosystem_conformance_consumer.py \
             tests/test_check_ecosystem_conformance_consumer.py \
             docs/ecosystem-conformance-consumer.md \
+            mkdocs.yml \
             .github/workflows/ecosystem-conformance-consumer.yml \
             > "$evidence/source-sha256.txt"
           TEST_STATUS="$TEST_STATUS" CONSUMER_STATUS="$CONSUMER_STATUS" \
