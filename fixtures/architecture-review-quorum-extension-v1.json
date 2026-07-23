@@ -1,0 +1,35 @@
+{
+  "schema": "qso.architecture-review-quorum.coverage-extension.corpus.v1",
+  "profile_version": "1.0.0",
+  "data_class": "synthetic_only_non_operational",
+  "extends": {
+    "fixture": "fixtures/architecture-review-quorum-v1.json",
+    "base_case_count": 12,
+    "base_fixture_generation": "historical-byte-preserved",
+    "contract": "docs/architecture-review-quorum-contract-v0.yaml"
+  },
+  "defaults": {
+    "class_coverage_complete": true,
+    "common_control_disclosed": true,
+    "conflicts_and_recusals_resolved": true,
+    "incompatible_role_double_count": false,
+    "appeal_present": false,
+    "appeal_authorized_and_current": false,
+    "appeal_panel_complete_and_independent": false,
+    "emergency_review_present": false,
+    "emergency_scope_bounded": true,
+    "superseded": false,
+    "dependent_findings_invalidated": true
+  },
+  "cases": [
+    {"id":"extension-baseline-clear","overrides":{},"expected":{"disposition":"COVERAGE_EXTENSION_CLEAR","reasons":[]}},
+    {"id":"incomplete-review-class-coverage","overrides":{"class_coverage_complete":false},"expected":{"disposition":"REVIEW_INCOMPLETE","reasons":["INCOMPLETE_REVIEW_CLASS_COVERAGE"]}},
+    {"id":"undisclosed-common-control","overrides":{"common_control_disclosed":false},"expected":{"disposition":"REVIEW_INCOMPLETE","reasons":["UNDISCLOSED_COMMON_CONTROL"]}},
+    {"id":"unresolved-conflict-or-recusal","overrides":{"conflicts_and_recusals_resolved":false},"expected":{"disposition":"REVIEW_INCOMPLETE","reasons":["UNRESOLVED_CONFLICT_OR_RECUSAL"]}},
+    {"id":"incompatible-role-double-count","overrides":{"incompatible_role_double_count":true},"expected":{"disposition":"REVIEW_INCOMPLETE","reasons":["INCOMPATIBLE_ROLE_DOUBLE_COUNT"]}},
+    {"id":"unauthorized-or-expired-appeal","overrides":{"appeal_present":true,"appeal_panel_complete_and_independent":true},"expected":{"disposition":"APPEAL_BLOCKED","reasons":["UNAUTHORIZED_OR_EXPIRED_APPEAL"]}},
+    {"id":"incomplete-or-conflicted-appeal-panel","overrides":{"appeal_present":true,"appeal_authorized_and_current":true},"expected":{"disposition":"APPEAL_BLOCKED","reasons":["INCOMPLETE_OR_CONFLICTED_APPEAL_PANEL"]}},
+    {"id":"emergency-scope-broadening","overrides":{"emergency_review_present":true,"emergency_scope_bounded":false},"expected":{"disposition":"REVIEW_INCOMPLETE","reasons":["EMERGENCY_SCOPE_BROADENING"]}},
+    {"id":"stale-review-after-supersession","overrides":{"superseded":true,"dependent_findings_invalidated":false},"expected":{"disposition":"REVIEW_INCOMPLETE","reasons":["STALE_REVIEW_AFTER_SUPERSESSION"]}}
+  ]
+}
