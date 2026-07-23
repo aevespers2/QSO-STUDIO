@@ -15,6 +15,7 @@ nav:
   - Architecture: architecture.md
   - Design contracts: design.md
   - Architecture review quorum: architecture-review-quorum-conformance.md
+  - Ecosystem conformance consumer: ecosystem-conformance-consumer.md
   - Portable trust review: portable-trust-review-profile.md
   - Obstruction and gluing: obstruction-and-gluing.md
   - Workflows:
