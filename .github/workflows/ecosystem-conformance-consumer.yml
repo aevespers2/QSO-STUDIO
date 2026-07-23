@@ -10,6 +10,7 @@ on:
       - scripts/check_ecosystem_conformance_consumer.py
       - tests/test_check_ecosystem_conformance_consumer.py
       - docs/ecosystem-conformance-consumer.md
+      - docs/integration-contracts.md
       - README.md
       - docs/index.md
       - taskchain.md
@@ -24,6 +25,7 @@ on:
       - scripts/check_ecosystem_conformance_consumer.py
       - tests/test_check_ecosystem_conformance_consumer.py
       - docs/ecosystem-conformance-consumer.md
+      - docs/integration-contracts.md
       - README.md
       - docs/index.md
       - taskchain.md
@@ -115,6 +117,7 @@ jobs:
             scripts/check_ecosystem_conformance_consumer.py \
             tests/test_check_ecosystem_conformance_consumer.py \
             docs/ecosystem-conformance-consumer.md \
+            docs/integration-contracts.md \
             README.md docs/index.md taskchain.md release.md punchlist.md changelog.md \
             .github/workflows/ecosystem-conformance-consumer.yml \
             > "$evidence/source-sha256.txt"
@@ -132,7 +135,8 @@ jobs:
               "producer_repository": "aevespers2/QSO-FABRIC",
               "producer_pr": 21,
               "producer_head": "25036a5cfcea79e204a4660ddd1af09c054935b1",
-              "fixture_git_blob": "5070ac6615b812b14a9f230678f58a081c6c2c4".replace("812b", "8127"),
+              "fixture_git_blob": "5070ac6615b8127b14a9f230678f58a081c6c2c4",
+              "fixture_sha256": "c5e6d2e42fdbe9703d9f28c7f65ffff02208bff52fa96ee7090bfcbcb5dea728",
               "fixture_relation": "BYTE_IDENTICAL",
               "authority_effect": "none",
               "deployment_authority": False,
