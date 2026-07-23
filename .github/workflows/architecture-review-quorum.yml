@@ -1,0 +1,180 @@
+name: Architecture Review Quorum Consumer
+
+on:
+  pull_request:
+    paths:
+      - "docs/architecture-review-quorum-conformance.md"
+      - "fixtures/architecture-review-producer-source-v1.json"
+      - "fixtures/architecture-review-quorum-v1.json"
+      - "fixtures/architecture-review-quorum-extension-v1.json"
+      - "scripts/check_architecture_review_quorum_consumer.py"
+      - "scripts/check_architecture_review_source_identity.py"
+      - "scripts/check_architecture_review_source_tuple.py"
+      - "tests/test_check_architecture_review_quorum_consumer.py"
+      - "tests/test_check_architecture_review_source_identity.py"
+      - "tests/test_check_architecture_review_source_tuple.py"
+      - "README.md"
+      - "docs/index.md"
+      - "taskchain.md"
+      - "release.md"
+      - "punchlist.md"
+      - "changelog.md"
+      - ".github/workflows/architecture-review-quorum.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/architecture-review-quorum-conformance.md"
+      - "fixtures/architecture-review-producer-source-v1.json"
+      - "fixtures/architecture-review-quorum-v1.json"
+      - "fixtures/architecture-review-quorum-extension-v1.json"
+      - "scripts/check_architecture_review_quorum_consumer.py"
+      - "scripts/check_architecture_review_source_identity.py"
+      - "scripts/check_architecture_review_source_tuple.py"
+      - "tests/test_check_architecture_review_quorum_consumer.py"
+      - "tests/test_check_architecture_review_source_identity.py"
+      - "tests/test_check_architecture_review_source_tuple.py"
+      - "README.md"
+      - "docs/index.md"
+      - "taskchain.md"
+      - "release.md"
+      - "punchlist.md"
+      - "changelog.md"
+      - ".github/workflows/architecture-review-quorum.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: studio-architecture-review-quorum-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  consumer-conformance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      PYTHONDONTWRITEBYTECODE: "1"
+
+    steps:
+      - name: Check out exact submitted source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ env.EXPECTED_SHA }}
+          fetch-depth: 1
+          persist-credentials: false
+          show-progress: false
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+          cache: ""
+
+      - name: Assert exact clean source and required files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          test -z "$(git status --porcelain)"
+          required=(
+            docs/architecture-review-quorum-conformance.md
+            fixtures/architecture-review-producer-source-v1.json
+            fixtures/architecture-review-quorum-v1.json
+            fixtures/architecture-review-quorum-extension-v1.json
+            scripts/check_architecture_review_quorum_consumer.py
+            scripts/check_architecture_review_source_identity.py
+            scripts/check_architecture_review_source_tuple.py
+            tests/test_check_architecture_review_quorum_consumer.py
+            tests/test_check_architecture_review_source_identity.py
+            tests/test_check_architecture_review_source_tuple.py
+            README.md docs/index.md taskchain.md release.md punchlist.md changelog.md
+          )
+          for path in "${required[@]}"; do test -f "$path"; done
+          evidence="$RUNNER_TEMP/studio-architecture-review-evidence"
+          mkdir -p "$evidence"
+          {
+            printf 'repository=%s\n' "$GITHUB_REPOSITORY"
+            printf 'source_sha=%s\n' "$EXPECTED_SHA"
+            printf 'workflow_run=%s\n' "$GITHUB_RUN_ID"
+            printf 'workflow_attempt=%s\n' "$GITHUB_RUN_ATTEMPT"
+          } | tee "$evidence/source-identity.txt"
+
+      - name: Verify source tuple and raw identities before semantic parsing
+        id: consumer
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          evidence="$RUNNER_TEMP/studio-architecture-review-evidence"
+          python3 scripts/check_architecture_review_source_identity.py \
+            > "$evidence/consumer-report.json" 2> "$evidence/consumer-errors.txt"
+          status=$?
+          cat "$evidence/consumer-report.json" || true
+          cat "$evidence/consumer-errors.txt" >&2 || true
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Run hostile regressions
+        id: tests
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          evidence="$RUNNER_TEMP/studio-architecture-review-evidence"
+          python3 -m unittest -v \
+            tests.test_check_architecture_review_quorum_consumer \
+            tests.test_check_architecture_review_source_identity \
+            tests.test_check_architecture_review_source_tuple \
+            > "$evidence/tests.txt" 2>&1
+          status=$?
+          cat "$evidence/tests.txt"
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Record deterministic inputs and clean-tree evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          evidence="$RUNNER_TEMP/studio-architecture-review-evidence"
+          sha256sum \
+            docs/architecture-review-quorum-conformance.md \
+            fixtures/architecture-review-producer-source-v1.json \
+            fixtures/architecture-review-quorum-v1.json \
+            fixtures/architecture-review-quorum-extension-v1.json \
+            scripts/check_architecture_review_quorum_consumer.py \
+            scripts/check_architecture_review_source_identity.py \
+            scripts/check_architecture_review_source_tuple.py \
+            tests/test_check_architecture_review_quorum_consumer.py \
+            tests/test_check_architecture_review_source_identity.py \
+            tests/test_check_architecture_review_source_tuple.py \
+            README.md docs/index.md taskchain.md release.md punchlist.md changelog.md \
+            .github/workflows/architecture-review-quorum.yml \
+            > "$evidence/input-sha256.txt"
+          python3 --version > "$evidence/python-version.txt" 2>&1
+          git diff --exit-code
+          git diff --cached --exit-code
+          test -z "$(git status --porcelain)"
+
+      - name: Upload retained evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: studio-architecture-review-quorum-${{ env.EXPECTED_SHA }}
+          path: ${{ runner.temp }}/studio-architecture-review-evidence
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Fail closed on incomplete validation
+        if: always()
+        shell: bash
+        env:
+          CONSUMER_STATUS: ${{ steps.consumer.outputs.status }}
+          TEST_STATUS: ${{ steps.tests.outputs.status }}
+        run: |
+          set -euo pipefail
+          test "$CONSUMER_STATUS" = "0"
+          test "$TEST_STATUS" = "0"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          test -z "$(git status --porcelain)"

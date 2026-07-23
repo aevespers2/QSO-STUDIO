@@ -1,0 +1,159 @@
+{
+  "profile_id": "qso.architecture-review-quorum.synthetic.v1",
+  "profile_version": "1.0.0",
+  "status": "synthetic_conformance_only",
+  "contract": {
+    "repository": "aevespers2/qso-field.github.io",
+    "pull_request": 24,
+    "source_commit": "e3f0cc452d4495460c6748b7eafdd614fe6c1e78",
+    "path": "docs/architecture-review-quorum-contract-v0.yaml",
+    "profile_id": "qso.architecture-review-quorum-boundary",
+    "profile_version": "0.1.0-proposed"
+  },
+  "policy": {
+    "required_classes": [
+      "architecture",
+      "security",
+      "operations"
+    ],
+    "minimum_approvals": 3,
+    "minimum_independent_groups": 3,
+    "incompatible_role_pairs": [
+      [
+        "author",
+        "architecture"
+      ],
+      [
+        "executor",
+        "independent_verifier"
+      ]
+    ]
+  },
+  "authority_effect": "none",
+  "cases": [
+    {
+      "case_id": "complete_pending_decision",
+      "source_exact": true,
+      "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-sec", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-ops", "roles": ["operations"]}
+      ],
+      "dissent_required": false, "dissent_preserved": true, "decision_record_present": false, "appeal_status": "NONE", "superseded": false,
+      "expected": {"state": "REVIEW_COMPLETE_PENDING_DECISION", "reason_codes": [], "authority_effect": "none"}
+    },
+    {
+      "case_id": "missing_exact_source", "source_exact": false, "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-sec", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-ops", "roles": ["operations"]}
+      ],
+      "dissent_required": false, "dissent_preserved": true, "decision_record_present": false, "appeal_status": "NONE", "superseded": false,
+      "expected": {"state": "REVIEW_INCOMPLETE", "reason_codes": ["MISSING_EXACT_SOURCE_OR_POLICY"], "authority_effect": "none"}
+    },
+    {
+      "case_id": "stale_or_unqualified_reviewer", "source_exact": true, "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": false, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-sec", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-ops", "roles": ["operations"]}
+      ],
+      "dissent_required": false, "dissent_preserved": true, "decision_record_present": false, "appeal_status": "NONE", "superseded": false,
+      "expected": {"state": "REVIEW_INCOMPLETE", "reason_codes": ["INDEPENDENCE_VIOLATION", "QUORUM_NOT_MET", "STALE_OR_UNQUALIFIED_REVIEWER"], "authority_effect": "none"}
+    },
+    {
+      "case_id": "missing_appointment", "source_exact": true, "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-sec", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "APPROVE", "qualified": true, "appointed": false, "accepted": true, "conflict_clear": true, "independence_group": "r-ops", "roles": ["operations"]}
+      ],
+      "dissent_required": false, "dissent_preserved": true, "decision_record_present": false, "appeal_status": "NONE", "superseded": false,
+      "expected": {"state": "REVIEW_INCOMPLETE", "reason_codes": ["INDEPENDENCE_VIOLATION", "MISSING_APPOINTMENT_OR_ACCEPTANCE", "QUORUM_NOT_MET"], "authority_effect": "none"}
+    },
+    {
+      "case_id": "abstention_not_approval", "source_exact": true, "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-sec", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "ABSTAIN", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-ops", "roles": ["operations"]}
+      ],
+      "dissent_required": false, "dissent_preserved": true, "decision_record_present": false, "appeal_status": "NONE", "superseded": false,
+      "expected": {"state": "REVIEW_INCOMPLETE", "reason_codes": ["ABSTENTION_COUNTED_AS_APPROVAL", "INDEPENDENCE_VIOLATION", "QUORUM_NOT_MET"], "authority_effect": "none"},
+      "claimed_counted_reviewers": ["r-arch", "r-sec", "r-ops"]
+    },
+    {
+      "case_id": "recusal_not_approval", "source_exact": true, "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-sec", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "RECUSE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-ops", "roles": ["operations"]}
+      ],
+      "dissent_required": false, "dissent_preserved": true, "decision_record_present": false, "appeal_status": "NONE", "superseded": false,
+      "expected": {"state": "REVIEW_INCOMPLETE", "reason_codes": ["INDEPENDENCE_VIOLATION", "QUORUM_NOT_MET", "RECUSAL_COUNTED_AS_APPROVAL"], "authority_effect": "none"},
+      "claimed_counted_reviewers": ["r-arch", "r-sec", "r-ops"]
+    },
+    {
+      "case_id": "authority_bearing_self_review", "source_exact": true, "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["author", "architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-sec", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-ops", "roles": ["operations"]}
+      ],
+      "dissent_required": false, "dissent_preserved": true, "decision_record_present": false, "appeal_status": "NONE", "superseded": false,
+      "expected": {"state": "REVIEW_INCOMPLETE", "reason_codes": ["SELF_REVIEW"], "authority_effect": "none"}
+    },
+    {
+      "case_id": "independence_violation", "source_exact": true, "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["operations"]}
+      ],
+      "dissent_required": false, "dissent_preserved": true, "decision_record_present": false, "appeal_status": "NONE", "superseded": false,
+      "expected": {"state": "REVIEW_INCOMPLETE", "reason_codes": ["INDEPENDENCE_VIOLATION"], "authority_effect": "none"}
+    },
+    {
+      "case_id": "dissent_not_preserved", "source_exact": true, "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-sec", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-ops", "roles": ["operations"]}
+      ],
+      "dissent_required": true, "dissent_preserved": false, "decision_record_present": false, "appeal_status": "NONE", "superseded": false,
+      "expected": {"state": "REVIEW_INCOMPLETE", "reason_codes": ["DISSENT_NOT_PRESERVED"], "authority_effect": "none"}
+    },
+    {
+      "case_id": "review_promoted_to_decision", "source_exact": true, "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-sec", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-ops", "roles": ["operations"]}
+      ],
+      "dissent_required": false, "dissent_preserved": true, "decision_record_present": true, "appeal_status": "NONE", "superseded": false,
+      "expected": {"state": "REVIEW_INCOMPLETE", "reason_codes": ["REVIEW_PROMOTED_TO_DECISION"], "authority_effect": "none"}
+    },
+    {
+      "case_id": "appeal_pending", "source_exact": true, "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-sec", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-ops", "roles": ["operations"]}
+      ],
+      "dissent_required": false, "dissent_preserved": true, "decision_record_present": false, "appeal_status": "PENDING", "superseded": false,
+      "expected": {"state": "APPEAL_REVIEW_PENDING", "reason_codes": [], "authority_effect": "none"}
+    },
+    {
+      "case_id": "superseded_review", "source_exact": true, "policy_exact": true,
+      "reviewers": [
+        {"reviewer_id": "r-arch", "reviewer_class": "architecture", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-arch", "roles": ["architecture"]},
+        {"reviewer_id": "r-sec", "reviewer_class": "security", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-sec", "roles": ["security"]},
+        {"reviewer_id": "r-ops", "reviewer_class": "operations", "disposition": "APPROVE", "qualified": true, "appointed": true, "accepted": true, "conflict_clear": true, "independence_group": "r-ops", "roles": ["operations"]}
+      ],
+      "dissent_required": false, "dissent_preserved": true, "decision_record_present": false, "appeal_status": "NONE", "superseded": true,
+      "expected": {"state": "SUPERSEDED_REVIEW", "reason_codes": [], "authority_effect": "none"}
+    }
+  ]
+}
