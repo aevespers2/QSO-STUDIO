@@ -13,6 +13,7 @@ from scripts import check_architecture_review_source_identity as identity
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "fixtures" / "architecture-review-quorum-v1.json"
 EXTENSION = ROOT / "fixtures" / "architecture-review-quorum-extension-v1.json"
+SOURCE_TUPLE = ROOT / "fixtures" / "architecture-review-producer-source-v1.json"
 
 
 def canonical_sha256(value: object) -> str:
@@ -60,10 +61,31 @@ class QSOStudioSourceIdentityTests(unittest.TestCase):
                 )
             parser.assert_not_called()
 
+    def test_invalid_source_tuple_blocks_both_semantic_parsers(self) -> None:
+        value = json.loads(SOURCE_TUPLE.read_text(encoding="utf-8"))
+        value["producer"]["observed_pr_head"] = "0" * 40
+        base_parser = Mock(side_effect=AssertionError("base parser must not run after tuple failure"))
+        extension_parser = Mock(side_effect=AssertionError("extension parser must not run after tuple failure"))
+        with tempfile.TemporaryDirectory() as tmp:
+            altered_tuple = Path(tmp) / SOURCE_TUPLE.name
+            altered_tuple.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "producer head moved"):
+                identity.run_pair(
+                    BASE,
+                    EXTENSION,
+                    altered_tuple,
+                    base_parser=base_parser,
+                    extension_parser=extension_parser,
+                )
+        base_parser.assert_not_called()
+        extension_parser.assert_not_called()
+
     def test_complete_pair_passes_without_authority_effect(self) -> None:
-        result = identity.run_pair(BASE, EXTENSION)
+        result = identity.run_pair(BASE, EXTENSION, SOURCE_TUPLE)
+        self.assertEqual(result["source_tuple_gate"], "external_tuple_before_fixture_parse")
         self.assertEqual(result["identity_gate"], "raw_sha256_before_parse")
         self.assertEqual(result["authority_effect"], "none")
+        self.assertEqual(result["source_tuple"]["result"], "PASS")
         self.assertEqual(result["base"]["result"], "PASS")
         self.assertEqual(result["extension"]["result"], "PASS")
 
