@@ -18,6 +18,12 @@ QSO-STUDIO consumes evidence and contract descriptions from other repositories. 
 | QSO-DIGITALIS | Inspect source interpretation and projections | Source/interpretation separation and archive/correction behavior |
 | QSO-PAYMENTS | Display payment-related evidence | Environment and custody separation; no settlement or approval authority |
 
+## Current bounded consumer
+
+The [independent ecosystem conformance consumer](ecosystem-conformance-consumer.md) binds QSO-FABRIC PR #21 at exact head `25036a5cfcea79e204a4660ddd1af09c054935b1`, manifest Git blob `5070ac6615b8127b14a9f230678f58a081c6c2c4`, and SHA-256 `c5e6d2e42fdbe9703d9f28c7f65ffff02208bff52fa96ee7090bfcbcb5dea728`. Studio verifies the exact bytes before applying an independently authored strict parser and evaluator.
+
+That result is synthetic declaration-level evidence only. It does not accept the producer's namespaces, payloads, conformance levels, governance semantics, adapters, or operational authority.
+
 ## Contract tuple
 
 Every implemented adapter must bind:
@@ -42,6 +48,6 @@ Integration remains blocked when record roles collide, two paths produce differe
 
 ## Current architectural clarification
 
-The labels `qso-event-ledger` and `qso-runtime-report` have been used across runtime-local and Fabric-level concepts. Studio must not combine or display them as one record family until upstream namespaces and payload ownership are resolved.
+The labels `qso-event-ledger` and `qso-runtime-report` have been used across runtime-local and Fabric-level concepts. Studio must not combine or display them as one record family until upstream namespaces and payload ownership are resolved. The manifest consumer preserves this obstruction rather than interpreting declaration agreement as live gluing success.
 
 This contract map is an observation and planning aid governed by `QSO-CONSENT-CAPACITY-LOCK-v1`; it creates no interface acceptance or operational authority.

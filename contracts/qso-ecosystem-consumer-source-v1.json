@@ -1,0 +1,23 @@
+{
+  "contract_id": "QSO-ECOSYSTEM-CONSUMER-SOURCE-V1",
+  "producer": {
+    "repository": "aevespers2/QSO-FABRIC",
+    "pull_request": 21,
+    "exact_head": "25036a5cfcea79e204a4660ddd1af09c054935b1",
+    "path": "qso.manifest.json",
+    "git_blob_sha": "5070ac6615b8127b14a9f230678f58a081c6c2c4",
+    "sha256": "c5e6d2e42fdbe9703d9f28c7f65ffff02208bff52fa96ee7090bfcbcb5dea728"
+  },
+  "consumer": {
+    "repository": "aevespers2/QSO-STUDIO",
+    "path": "fixtures/qso-fabric-manifest-v1.json",
+    "relation": "BYTE_IDENTICAL"
+  },
+  "resolution": {
+    "resolver": "QSO-STUDIO-source-resolver",
+    "resolver_independence_group": "studio-resolution",
+    "verifier": "QSO-STUDIO-consumer-verifier",
+    "verifier_independence_group": "studio-verification"
+  },
+  "authority_effect": "none"
+}
