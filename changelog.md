@@ -8,12 +8,14 @@
 - 2026-07-16 — Established product/UX charter approval and documentation integrity as the first QSO-STUDIO objective.
 - 2026-07-16 — Defined the initial user outcome as a truthful read-only evidence-review workflow; runtime execution, repository writes, credentials, and payment control remain out of scope.
 - 2026-07-23 — Added a reviewable documentation candidate without representing a site, application, package, or integration as released.
+- 2026-07-23 — Added a bounded, synthetic ecosystem-manifest consumer without representing QSO-STUDIO as admitted, operational, or authorized to execute.
 
 ### Architecture
 - Studio separates source evidence, normalized presentation, accessible review, local proposals, exported review packets, human/repository review, and any later upstream action.
 - Added explicit source, rendering, proposal, repository, runtime, and financial trust boundaries.
 - Added a prose-equivalent Mermaid architecture diagram.
 - Preserved the runtime-local versus Fabric-level record-role collision as an unresolved integration blocker.
+- Bound the manifest consumer to QSO-FABRIC PR #21 head `25036a5cfcea79e204a4660ddd1af09c054935b1`, Git blob `5070ac6615b8127b14a9f230678f58a081c6c2c4`, and SHA-256 `c5e6d2e42fdbe9703d9f28c7f65ffff02208bff52fa96ee7090bfcbcb5dea728`.
 
 ### Added
 - `docs/index.md` documentation front door.
@@ -21,6 +23,10 @@
 - Architecture and trust-boundary outline.
 - Fixture-oriented read-only evidence-review workflow.
 - Integration contract map.
+- Independent ecosystem-conformance consumer guide.
+- Immutable consumer source tuple and byte-identical QSO-FABRIC manifest fixture.
+- Strict consumer validator and hostile regression suite.
+- SHA-pinned, read-only, exact-head ecosystem-consumer workflow with retained evidence.
 - Onboarding and developer guides.
 - Accessibility and security/privacy requirements.
 - `punchlist.md` with completed documentation work and blocking decisions.
@@ -29,25 +35,31 @@
 ### Changed
 - Replaced the unsupported statement that a GitHub Pages site is already published with an accurate documentation-candidate notice.
 - Aligned `README.md`, `taskchain.md`, `release.md`, `punchlist.md`, and `changelog.md` to one candidate identifier and publication boundary.
-- Distinguished passing documentation checks from charter approval, publication approval, release approval, interface acceptance, and implementation authority.
+- Distinguished passing documentation and manifest checks from charter approval, publication approval, ecosystem admission, interface acceptance, release approval, and implementation authority.
+- Rebuilt the useful QSO-STUDIO PR #4 manifest-consumer work from current `main` rather than force-updating a diverged branch.
+- Rebound the producer tuple from the historical QSO-FABRIC head `738cf25aec9b2bae0b71c50374585bab36934ef3` to current PR #21 head `25036a5cfcea79e204a4660ddd1af09c054935b1` while preserving identical manifest bytes.
 
 ### Fixed
 - Removed the contradiction between the README's former `docs/`/Pages claim and the repository's actual contents.
 - Added explicit currentness, correction, withdrawal, provenance, accessibility, and rollback requirements.
 - Prevented annotations and exported review packets from being described as repository or runtime changes.
+- Prevented stale PR #4 exact-head evidence from being represented as current after `main` advanced.
+- Added fail-closed source-tuple drift, raw-byte drift, duplicate-key, non-finite-number, Boolean/integer confusion, unsafe-default, identifier, version, governance, and authority-promotion checks.
 
 ### Security
 - Required synthetic and non-sensitive public materials, inert rendering, strict inputs, least privilege, explicit network/storage policy, source provenance, dependency review, and rollback propagation.
-- Retained `QSO-CONSENT-CAPACITY-LOCK-v1` governance across the documentation candidate.
+- Retained `QSO-CONSENT-CAPACITY-LOCK-v1` governance across the documentation and consumer candidates.
+- Kept workflow permissions read-only, disabled persisted checkout credentials, pinned external Actions, bounded execution time, and isolated generated evidence outside the checkout.
 
 ### Accessibility
 - Required logical headings, descriptive links, text alternatives, non-color state indicators, keyboard access, reflow, reduced motion, accessible graphs/timelines, and error recovery.
+- Added equivalent prose for the ecosystem-consumer pipeline diagram.
 
 ### Release
-- Documentation candidate remains blocked on charter, platform, license, ownership, upstream contracts, manual reviews, publication approval, and resulting-route verification.
+- Documentation and consumer candidates remain blocked on charter, platform, license, ownership, upstream contracts, namespace/payload partitioning, manual reviews, publication approval, and resulting-route verification.
 
 ### Deployment
-- No Pages publication, application deployment, package release, or infrastructure change is authorized by this documentation milestone.
+- No Pages publication, application deployment, package release, ecosystem admission, or infrastructure change is authorized by this milestone.
 
 ## Entry format
 - Date
