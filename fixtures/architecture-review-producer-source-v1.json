@@ -1,0 +1,58 @@
+{
+  "profile_id": "qso.studio.architecture-review-producer-source.v1",
+  "profile_version": "1.1.0",
+  "status": "candidate_observation_only",
+  "authority_effect": "none",
+  "producer": {
+    "repository": "aevespers2/qso-field.github.io",
+    "pull_request": 24,
+    "base_head": "2d7adf88ce84f01f0ff1067cef09388481f7e4ae",
+    "resolved_head": "a56b1fa93f151ee14f3cdd4183b89a10e268e352",
+    "observed_pr_head": "a56b1fa93f151ee14f3cdd4183b89a10e268e352",
+    "head_state": "current_at_resolution",
+    "freeze_evidence": {
+      "workflow_run": 30000668553,
+      "artifact_id": 8560824564,
+      "artifact_digest": "sha256:f266006a19bd8a5d95b4c7aeedfc0bac950f1932d7b58eef88ee7eac6f62e77a",
+      "expires_at": "2026-08-22T10:48:09Z",
+      "evidence_status": "current_at_resolution"
+    }
+  },
+  "resolution": {
+    "resolver_id": "external-portfolio-health-resolver",
+    "resolver_independence_group": "external-resolution",
+    "verifier_id": "qso-studio-source-tuple-verifier",
+    "verifier_independence_group": "qso-studio-ci",
+    "independent": true
+  },
+  "supersession": {
+    "previous_source_head": "49a93b25f1b04c13b97fef93a786afa4bf1048c4",
+    "previous_evidence_status": "historical",
+    "current_source_head": "a56b1fa93f151ee14f3cdd4183b89a10e268e352",
+    "link_complete": true
+  },
+  "artifacts": [
+    {
+      "name": "base",
+      "producer_path": "fixtures/architecture-review-quorum-v1.json",
+      "producer_blob_sha": "9e01e92d8abec20da6594857d6f064fbba8e73ae",
+      "producer_raw_sha256": "dea97fcfd54cd71e9bf38af0c8ca4eeeedd83156ab4d1ae2a7f91513a32485f5",
+      "consumer_path": "fixtures/architecture-review-quorum-v1.json",
+      "consumer_blob_sha": "22fe2513bffc865a6483b96285d7ad323b1a245a",
+      "consumer_raw_sha256": "521622728f55c947f345e3e6cb6bd2e6b0d38bb62272871c84cdb9e24d5b2116",
+      "canonical_sha256": "a8b65c3fce4b7cf80fdefab76c497720b2bf17086d431a53f9bacf82e58bd9ec",
+      "copy_relation": "canonical_equivalent_not_byte_identical"
+    },
+    {
+      "name": "extension",
+      "producer_path": "fixtures/architecture-review-quorum-extension-v1.json",
+      "producer_blob_sha": "e638e7cac904a25b76ff8ec96f7e3ca18ae82dc4",
+      "producer_raw_sha256": "14ed2b65dea7b3c5fc0b026e839144beff34f07fc416f0a54b77b8acf17a6ed4",
+      "consumer_path": "fixtures/architecture-review-quorum-extension-v1.json",
+      "consumer_blob_sha": "e638e7cac904a25b76ff8ec96f7e3ca18ae82dc4",
+      "consumer_raw_sha256": "14ed2b65dea7b3c5fc0b026e839144beff34f07fc416f0a54b77b8acf17a6ed4",
+      "canonical_sha256": "6e767141e6c76ec43366b661db0fee9090a56c9ce7d50eda28da7f1094d5e3c2",
+      "copy_relation": "byte_identical"
+    }
+  ]
+}
