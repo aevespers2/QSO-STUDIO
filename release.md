@@ -1,78 +1,78 @@
 # Release Plan
 
-## Current Decision
+`QSO-STUDIO-DOCS-CANDIDATE-001`
 
-Status: `BLOCKED — PRODUCT/UX CHARTER AND DOCUMENTATION INTEGRITY`
+## Current decision
 
-QSO-STUDIO currently contains an initial README for a proposed review/orchestration surface, not a verified application or documentation site. P0 is blocked on product/UX approval, `punchlist.md` is absent, the README still claims a Pages site under `docs/` and `.github/workflows/pages.yml` although those paths do not exist, and candidate head `4a321bc153e4525694a160eb64c20ed172df1325` lacks design, build, tests, accessibility, security/privacy, documentation, provenance, artifact, and rollback evidence.
+Status: `BLOCKED — DOCUMENTATION CANDIDATE IN REVIEW; PRODUCT CHARTER AND PUBLICATION APPROVAL REQUIRED`
+
+QSO-STUDIO now has a bounded documentation candidate: a truthful front door, product and UX charter, architecture, accessible diagram, read-only review workflow, integration map, onboarding, developer guidance, accessibility and security/privacy requirements, punch list, deterministic checks, and hostile regressions. It is **not an authorized Pages publication, application, package, or release**.
 
 ## Versioning
 
 - Scheme: Semantic Versioning after product scope, platforms, integration contracts, license, privacy model, and distribution identity are approved.
 - First possible documentation candidate: `0.0.1-charter.1`.
 - First UI candidate: `0.1.0-alpha.1`, remaining pre-release until accessibility, security, integration, packaging, and workflow gates pass.
-- No version may imply a site, executable Studio, orchestration authority, or payment capability that is not present and verified.
+- No version may imply a site, executable Studio, orchestration authority, repository authority, or payment capability that is not present and verified.
 
-## Release Scope
+## Included documentation scope
 
-### Charter/documentation candidate
-- Approved users, workflows, non-goals, platforms, data/privacy/license model, distribution target, ecosystem role, and authority boundaries.
-- Accurate repository/publication map and removal or fulfillment of unsupported Pages claims.
-- Explicit separation of visualization, editing, proposals, human approval, runtime execution, repository writes, and payment records.
-- Reproducible accessible documentation artifact with security/privacy, checksums, provenance, and rollback.
+- Product purpose, readers, first workflow, principles, non-goals, and open decisions.
+- Architecture and trust boundaries with a prose-equivalent diagram.
+- Fixture-oriented read-only evidence-review sequence and evidence-state vocabulary.
+- Candidate integration corridors and exact contract-tuple requirements.
+- Onboarding and developer contribution paths.
+- Accessibility, security, privacy, correction, withdrawal, and rollback expectations.
+- Aligned README, task chain, punch list, release plan, and changelog.
+- Deterministic documentation integrity checks and hostile regressions.
 
-### Later UI candidate
-- Minimal accessible UI and one fixture-backed read-only evidence-review workflow.
-- Versioned contracts for genomes, state/evidence, messages, proposals, freeze points, attribution, and errors.
-- No direct credentials, execution, unrestricted repository writes, autonomous approval, or production payment authority.
+## Excluded scope
 
-## Selected Completed Work
+- UI or executable implementation.
+- Production credentials, restricted source data, direct runtime controls, repository mutation, autonomous approvals, payment settlement, release signing, or deployment.
+- GitHub Pages publication without a separate authorized source, workflow, review record, and rollback plan.
+- Acceptance of upstream schemas, namespaces, adapters, or ownership.
 
-None. The README is a candidate scope note but has not passed charter approval, accuracy verification, accessibility/security review, reproducible publication, or provenance gates.
-
-## Planned Changelog Entries
-
-- `Documentation`: approved product/UX charter, workflows, platforms, trust boundaries, and verification strategy.
-- `Fixed`: remove or fulfill unsupported Pages/publication claims and reconcile capability statements with repository evidence.
-- `Added`: reproducible documentation artifact and later one read-only workflow after approval.
-- `Security`: credentials, untrusted rendering, parser, storage, network, dependencies, workflow permissions, repository writes, and privacy.
-- `Accessibility`: keyboard, focus, semantics, contrast, scaling, motion, visualization alternatives, and error recovery.
-- `Release`: artifacts, SBOM where applicable, checksums, provenance, and approval.
-
-## Acceptance Gates
+## Acceptance gates
 
 | Gate | Status | Requirement |
 |---|---|---|
-| Product/UX charter | BLOCKED | Approve users, workflows, platforms, ecosystem role, privacy/license model, distribution, and authority boundaries. |
-| Documentation integrity | FAIL | Every path, publication statement, workflow, and capability claim matches verified repository evidence. |
-| Task completion | FAIL | P0 is `DONE`; `punchlist.md` exists and included work has evidence. |
-| Documentation build | NO EVIDENCE | Real source/workflow or a documented manual process produces a reproducible artifact. |
-| UI build/tests | NOT YET INCLUDED | Required for a later UI candidate: install/build/static, unit/component/contract/integration/smoke checks pass. |
-| Security/privacy | NO EVIDENCE | Credential, rendering/parser, storage, network, dependency, secret, CI, repository-write, and privacy checks pass. |
-| Accessibility | NO EVIDENCE | Keyboard, focus, semantics, labels, contrast, scaling, reduced motion, alternatives, and error states pass. |
-| Documentation | FAIL | Approved setup, usage, integrations, limitations, accessibility, privacy, publication, and rollback guidance are absent. |
-| Provenance | NO EVIDENCE | Commit, tools/platforms, commands, artifacts, hashes, SBOM, publication target, and attestations are retained. |
-| Approval | PENDING | Explicit release approval after all included-scope gates pass. |
+| Product/UX charter | BLOCKED | Explicitly accept or revise users, workflow, platforms, ecosystem role, privacy/license model, distribution, and authority boundaries. |
+| Documentation integrity | REVIEW | Required pages, links, planning controls, maturity labels, and authority notices pass at the final exact head. |
+| Documentation accessibility | REVIEW | Diagrams have prose alternatives; manual keyboard, zoom, reflow, and comprehension review remains required. |
+| Security/privacy | REVIEW | Public materials remain synthetic and non-sensitive; final review and ownership remain required. |
+| Integration consistency | BLOCKED | Exact upstream contract generations, ownership, correction, withdrawal, migration, and rollback are unresolved. |
+| Pages publication | BLOCKED | Source, permissions, approval, artifact, rollback, and resulting-route verification are not authorized. |
+| Provenance | REVIEW | Exact-head workflow must retain source identity, deterministic input hashes, tests, and artifact metadata. |
+| Approval | PENDING | Separate charter, publication, release, and later implementation decisions are required. |
 
-## Artifact Requirements
+## Artifact requirements
 
-- Approved product/UX charter, authority model, architecture/workflow diagrams, privacy model, and contract map.
-- Reproducible documentation artifact and source archive.
-- Documentation-integrity, link, accessibility, security/privacy, build, and smoke reports.
-- For later UI work: versioned schemas/fixtures, package artifacts, tests, SBOM, signing status where applicable, checksums, provenance, and rollback evidence.
+- Exact source commit and documentation file manifest.
+- Documentation integrity and hostile-regression reports.
+- Internal-link and diagram-alternative results.
+- Deterministic input hashes and retained evidence artifact.
+- Accessibility, security/privacy, licensing, and attribution review records.
+- Publication target and rollback record if publication is later approved.
+- Resulting-route verification after any authorized publication.
 
-## Rollback Criteria
+## Rollback criteria
 
-Withdraw a charter candidate if it overlaps another repository, leaves execution/payment/privacy authority ambiguous, or publishes unsupported paths/capabilities. Roll back implementation if the primary workflow fails, contracts drift, untrusted content executes, credentials or personal data cross the boundary, accessibility blocks use, artifacts are non-reproducible, severe security findings remain, or hashes differ. Restore the prior verified artifact/tag and preserve failed-candidate evidence.
+Withdraw the documentation candidate when it makes an unsupported publication or capability claim, merges proposal and authority states, loses source provenance, hides a correction or withdrawal, introduces inaccessible navigation or diagrams, includes restricted data, or cannot be reproduced. Restore the prior verified documentation state, mark affected routes stale or withdrawn, and preserve the failed candidate evidence.
 
-## Unresolved Blockers
+## Unresolved blockers
 
-- Approval is required for the product/UX charter, platform/distribution target, ecosystem role, privacy/license model, and authority boundaries.
-- `punchlist.md` and accepted Builder evidence are absent.
-- The README's `docs/` and Pages-workflow publication claim is unsupported by repository content.
-- No documentation build, design system, implementation, schemas, fixtures, tests, CI, accessibility, security/privacy, provenance, checksums, or rollback artifact exists.
-- Payment and orchestration views must remain read-only and evidence-based until upstream contracts and authority approvals exist.
+- Product/UX charter approval.
+- Platform and distribution identity.
+- License and contribution policy.
+- Documentation, accessibility, privacy, security, integration, publication, and rollback ownership.
+- Exact upstream contract generations and the first synthetic fixture envelope.
+- Runtime-local versus Fabric-level record-role collision.
+- Pages publication decision and resulting-route verification.
 
-## Release Log
+## Release log
 
-- 2026-07-16: Aligned the candidate with the product/UX charter and documentation-integrity gate; no release-ready work selected.
+- 2026-07-16: Established charter and documentation integrity as the release prerequisite.
+- 2026-07-23: Added the `QSO-STUDIO-DOCS-CANDIDATE-001` documentation candidate; no publication, application, or release was authorized.
+
+This release plan is governed by `QSO-CONSENT-CAPACITY-LOCK-v1`.
