@@ -4,12 +4,15 @@ on:
   pull_request:
     paths:
       - "docs/architecture-review-quorum-conformance.md"
+      - "fixtures/architecture-review-producer-source-v1.json"
       - "fixtures/architecture-review-quorum-v1.json"
       - "fixtures/architecture-review-quorum-extension-v1.json"
       - "scripts/check_architecture_review_quorum_consumer.py"
       - "scripts/check_architecture_review_source_identity.py"
+      - "scripts/check_architecture_review_source_tuple.py"
       - "tests/test_check_architecture_review_quorum_consumer.py"
       - "tests/test_check_architecture_review_source_identity.py"
+      - "tests/test_check_architecture_review_source_tuple.py"
       - "mkdocs.yml"
       - "README.md"
       - "taskchain.md"
@@ -20,12 +23,15 @@ on:
     branches: [main]
     paths:
       - "docs/architecture-review-quorum-conformance.md"
+      - "fixtures/architecture-review-producer-source-v1.json"
       - "fixtures/architecture-review-quorum-v1.json"
       - "fixtures/architecture-review-quorum-extension-v1.json"
       - "scripts/check_architecture_review_quorum_consumer.py"
       - "scripts/check_architecture_review_source_identity.py"
+      - "scripts/check_architecture_review_source_tuple.py"
       - "tests/test_check_architecture_review_quorum_consumer.py"
       - "tests/test_check_architecture_review_source_identity.py"
+      - "tests/test_check_architecture_review_source_tuple.py"
       - "mkdocs.yml"
       - "README.md"
       - "taskchain.md"
@@ -72,12 +78,15 @@ jobs:
           test -z "$(git status --porcelain)"
           required=(
             docs/architecture-review-quorum-conformance.md
+            fixtures/architecture-review-producer-source-v1.json
             fixtures/architecture-review-quorum-v1.json
             fixtures/architecture-review-quorum-extension-v1.json
             scripts/check_architecture_review_quorum_consumer.py
             scripts/check_architecture_review_source_identity.py
+            scripts/check_architecture_review_source_tuple.py
             tests/test_check_architecture_review_quorum_consumer.py
             tests/test_check_architecture_review_source_identity.py
+            tests/test_check_architecture_review_source_tuple.py
             mkdocs.yml
             README.md
             taskchain.md
@@ -94,7 +103,7 @@ jobs:
             printf 'workflow_attempt=%s\n' "$GITHUB_RUN_ATTEMPT"
           } | tee evidence/source-identity.txt
 
-      - name: Verify raw fixture identity before independent parsing
+      - name: Verify external source tuple and raw fixture identity before parsing
         id: consumer
         continue-on-error: true
         shell: bash
@@ -107,7 +116,7 @@ jobs:
           echo "status=$status" >> "$GITHUB_OUTPUT"
           exit 0
 
-      - name: Run consumer and source-identity regressions
+      - name: Run consumer source-tuple and source-identity regressions
         id: tests
         continue-on-error: true
         shell: bash
@@ -116,6 +125,7 @@ jobs:
           python3 -m unittest \
             tests.test_check_architecture_review_quorum_consumer \
             tests.test_check_architecture_review_source_identity \
+            tests.test_check_architecture_review_source_tuple \
             -v > evidence/studio-quorum-consumer-tests.txt 2>&1
           status=$?
           cat evidence/studio-quorum-consumer-tests.txt
@@ -128,12 +138,15 @@ jobs:
           set -euo pipefail
           sha256sum \
             docs/architecture-review-quorum-conformance.md \
+            fixtures/architecture-review-producer-source-v1.json \
             fixtures/architecture-review-quorum-v1.json \
             fixtures/architecture-review-quorum-extension-v1.json \
             scripts/check_architecture_review_quorum_consumer.py \
             scripts/check_architecture_review_source_identity.py \
+            scripts/check_architecture_review_source_tuple.py \
             tests/test_check_architecture_review_quorum_consumer.py \
             tests/test_check_architecture_review_source_identity.py \
+            tests/test_check_architecture_review_source_tuple.py \
             mkdocs.yml \
             README.md \
             taskchain.md \
