@@ -12,6 +12,19 @@ on:
       - "scripts/check_documentation.py"
       - "tests/test_documentation.py"
       - ".github/workflows/documentation-candidate.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "README.md"
+      - "taskchain.md"
+      - "release.md"
+      - "punchlist.md"
+      - "changelog.md"
+      - "docs/**"
+      - "scripts/check_documentation.py"
+      - "tests/test_documentation.py"
+      - ".github/workflows/documentation-candidate.yml"
   workflow_dispatch:
 
 permissions:
@@ -55,6 +68,8 @@ jobs:
           {
             printf 'repository=%s\n' "$GITHUB_REPOSITORY"
             printf 'source_sha=%s\n' "$SUBMITTED_SHA"
+            printf 'event_name=%s\n' "$GITHUB_EVENT_NAME"
+            printf 'ref=%s\n' "$GITHUB_REF"
             printf 'workflow_run=%s\n' "$GITHUB_RUN_ID"
             printf 'workflow_attempt=%s\n' "$GITHUB_RUN_ATTEMPT"
           } | tee "$evidence/source-identity.txt"
