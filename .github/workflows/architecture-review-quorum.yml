@@ -7,7 +7,9 @@ on:
       - "fixtures/architecture-review-quorum-v1.json"
       - "fixtures/architecture-review-quorum-extension-v1.json"
       - "scripts/check_architecture_review_quorum_consumer.py"
+      - "scripts/check_architecture_review_source_identity.py"
       - "tests/test_check_architecture_review_quorum_consumer.py"
+      - "tests/test_check_architecture_review_source_identity.py"
       - "mkdocs.yml"
       - "README.md"
       - "taskchain.md"
@@ -21,7 +23,9 @@ on:
       - "fixtures/architecture-review-quorum-v1.json"
       - "fixtures/architecture-review-quorum-extension-v1.json"
       - "scripts/check_architecture_review_quorum_consumer.py"
+      - "scripts/check_architecture_review_source_identity.py"
       - "tests/test_check_architecture_review_quorum_consumer.py"
+      - "tests/test_check_architecture_review_source_identity.py"
       - "mkdocs.yml"
       - "README.md"
       - "taskchain.md"
@@ -71,7 +75,9 @@ jobs:
             fixtures/architecture-review-quorum-v1.json
             fixtures/architecture-review-quorum-extension-v1.json
             scripts/check_architecture_review_quorum_consumer.py
+            scripts/check_architecture_review_source_identity.py
             tests/test_check_architecture_review_quorum_consumer.py
+            tests/test_check_architecture_review_source_identity.py
             mkdocs.yml
             README.md
             taskchain.md
@@ -88,27 +94,29 @@ jobs:
             printf 'workflow_attempt=%s\n' "$GITHUB_RUN_ATTEMPT"
           } | tee evidence/source-identity.txt
 
-      - name: Run independent Studio consumer
+      - name: Verify raw fixture identity before independent parsing
         id: consumer
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python3 scripts/check_architecture_review_quorum_consumer.py \
+          python3 scripts/check_architecture_review_source_identity.py \
             > evidence/studio-quorum-consumer-report.txt 2>&1
           status=$?
           cat evidence/studio-quorum-consumer-report.txt
           echo "status=$status" >> "$GITHUB_OUTPUT"
           exit 0
 
-      - name: Run consumer regressions
+      - name: Run consumer and source-identity regressions
         id: tests
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python3 -m unittest tests.test_check_architecture_review_quorum_consumer -v \
-            > evidence/studio-quorum-consumer-tests.txt 2>&1
+          python3 -m unittest \
+            tests.test_check_architecture_review_quorum_consumer \
+            tests.test_check_architecture_review_source_identity \
+            -v > evidence/studio-quorum-consumer-tests.txt 2>&1
           status=$?
           cat evidence/studio-quorum-consumer-tests.txt
           echo "status=$status" >> "$GITHUB_OUTPUT"
@@ -123,7 +131,9 @@ jobs:
             fixtures/architecture-review-quorum-v1.json \
             fixtures/architecture-review-quorum-extension-v1.json \
             scripts/check_architecture_review_quorum_consumer.py \
+            scripts/check_architecture_review_source_identity.py \
             tests/test_check_architecture_review_quorum_consumer.py \
+            tests/test_check_architecture_review_source_identity.py \
             mkdocs.yml \
             README.md \
             taskchain.md \
