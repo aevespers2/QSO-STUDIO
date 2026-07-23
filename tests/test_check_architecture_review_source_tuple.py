@@ -77,11 +77,9 @@ class ArchitectureReviewSourceTupleTests(unittest.TestCase):
 
     def test_duplicate_key_is_rejected(self) -> None:
         text = SOURCE_TUPLE.read_text(encoding="utf-8")
-        altered = text.replace(
-            '  "profile_version": "1.0.0",',
-            '  "profile_version": "1.0.0",\n  "profile_version": "1.0.0",',
-            1,
-        )
+        version_line = f'  "profile_version": "{source_tuple.EXPECTED_PROFILE_VERSION}",'
+        self.assertIn(version_line, text)
+        altered = text.replace(version_line, f"{version_line}\n{version_line}", 1)
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / SOURCE_TUPLE.name
             path.write_text(altered, encoding="utf-8")
