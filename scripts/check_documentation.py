@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+ACCESSIBILITY_EVIDENCE = "docs/accessibility-review-evidence.md"
 REQUIRED = [
     "README.md",
     "taskchain.md",
@@ -23,15 +24,49 @@ REQUIRED = [
     "docs/onboarding.md",
     "docs/developer-guide.md",
     "docs/accessibility.md",
+    ACCESSIBILITY_EVIDENCE,
     "docs/security-privacy.md",
 ]
 PLANNING_MARKER = "QSO-STUDIO-DOCS-CANDIDATE-001"
 CONSENT_MARKER = "QSO-CONSENT-CAPACITY-LOCK-v1"
+ACCESSIBILITY_STATUS = "DOCUMENTED_NOT_CERTIFIED"
+EVIDENCE_STATES = {
+    "NOT_REVIEWED",
+    "PARTIAL",
+    "PASS",
+    "FAIL",
+    "BLOCKED",
+    "UNKNOWN",
+    "SUPERSEDED",
+    "WITHDRAWN",
+    "CORRECTED",
+}
+AUTHORITY_CLASSES = {
+    "OBSERVATION",
+    "INTERPRETATION",
+    "ANNOTATION",
+    "PROPOSAL",
+    "REVIEW_DIAGNOSTIC",
+    "HUMAN_DISPOSITION",
+    "EXTERNAL_ACTION",
+}
+DENIED_AUTHORITY_FLAGS = {
+    "certifies_accessibility: false",
+    "approves_pages_publication: false",
+    "approves_product_charter: false",
+    "approves_release: false",
+    "grants_runtime_authority: false",
+    "grants_repository_write: false",
+    "appoints_reviewers: false",
+    "decides_architecture: false",
+    "grants_payment_authority: false",
+}
 LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 
 
 def check() -> list[str]:
     errors: list[str] = []
+    loaded: dict[str, str] = {}
     for rel in REQUIRED:
         path = ROOT / rel
         if not path.is_file():
@@ -42,6 +77,7 @@ def check() -> list[str]:
         except UnicodeDecodeError:
             errors.append(f"invalid UTF-8: {rel}")
             continue
+        loaded[rel] = text
         if rel.endswith(".md") and not re.search(r"^#\s+\S", text, re.M):
             errors.append(f"missing H1: {rel}")
         if rel.startswith("docs/") and CONSENT_MARKER not in text:
@@ -65,19 +101,46 @@ def check() -> list[str]:
             if not resolved.exists():
                 errors.append(f"broken internal link: {rel} -> {target}")
 
-    readme = (ROOT / "README.md").read_text(encoding="utf-8") if (ROOT / "README.md").is_file() else ""
+    readme = loaded.get("README.md", "")
     if "published" in readme.lower() and "not published" not in readme.lower():
         errors.append("README contains an unsupported publication claim")
 
-    release = (ROOT / "release.md").read_text(encoding="utf-8") if (ROOT / "release.md").is_file() else ""
-    taskchain = (ROOT / "taskchain.md").read_text(encoding="utf-8") if (ROOT / "taskchain.md").is_file() else ""
-    punchlist = (ROOT / "punchlist.md").read_text(encoding="utf-8") if (ROOT / "punchlist.md").is_file() else ""
-    changelog = (ROOT / "changelog.md").read_text(encoding="utf-8") if (ROOT / "changelog.md").is_file() else ""
-    for name, text in {"release.md": release, "taskchain.md": taskchain, "punchlist.md": punchlist, "changelog.md": changelog}.items():
+    release = loaded.get("release.md", "")
+    taskchain = loaded.get("taskchain.md", "")
+    punchlist = loaded.get("punchlist.md", "")
+    changelog = loaded.get("changelog.md", "")
+    for name, text in {
+        "release.md": release,
+        "taskchain.md": taskchain,
+        "punchlist.md": punchlist,
+        "changelog.md": changelog,
+    }.items():
         if "documentation candidate" not in text.lower():
             errors.append(f"{name} does not describe the documentation candidate")
         if "publication" not in text.lower():
             errors.append(f"{name} omits publication boundary")
+        if "accessibility" not in text.lower() or "evidence" not in text.lower():
+            errors.append(f"{name} omits accessibility-evidence alignment")
+
+    evidence = loaded.get(ACCESSIBILITY_EVIDENCE, "")
+    if evidence:
+        if ACCESSIBILITY_STATUS not in evidence:
+            errors.append("accessibility evidence omits documented-not-certified status")
+        for state in sorted(EVIDENCE_STATES):
+            if state not in evidence:
+                errors.append(f"accessibility evidence omits state: {state}")
+        for authority_class in sorted(AUTHORITY_CLASSES):
+            if authority_class not in evidence:
+                errors.append(f"accessibility evidence omits authority class: {authority_class}")
+        for flag in sorted(DENIED_AUTHORITY_FLAGS):
+            if flag not in evidence:
+                errors.append(f"accessibility evidence omits denied authority flag: {flag}")
+        if "200%" not in evidence or "400%" not in evidence:
+            errors.append("accessibility evidence omits 200%/400% zoom review")
+        if "screen reader" not in evidence.lower():
+            errors.append("accessibility evidence omits screen-reader review")
+        if "correction" not in evidence.lower() or "supersession" not in evidence.lower():
+            errors.append("accessibility evidence omits correction/supersession handling")
 
     return sorted(set(errors))
 
@@ -87,6 +150,7 @@ def main() -> int:
     report = {
         "profile": PLANNING_MARKER,
         "required_files": len(REQUIRED),
+        "accessibility_status": ACCESSIBILITY_STATUS,
         "status": "PASS" if not errors else "FAIL_CLOSED",
         "errors": errors,
     }
