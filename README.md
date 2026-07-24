@@ -19,6 +19,9 @@ Start with:
 - [Architecture review quorum conformance](docs/architecture-review-quorum-conformance.md)
 - [Onboarding](docs/onboarding.md)
 - [Developer guide](docs/developer-guide.md)
+- [Accessibility overview](docs/accessibility.md)
+- [Accessibility review evidence](docs/accessibility-review-evidence.md)
+- [Security and privacy](docs/security-privacy.md)
 - [Punch list](punchlist.md)
 
 ## Product boundary
@@ -30,6 +33,7 @@ The first bounded workflows are fixture-backed and read-only. An annotation, rev
 ## Current status
 
 - Documentation: candidate, with deterministic checks.
+- Accessibility: requirements and exact-artifact review protocol documented; no accessibility certification is claimed.
 - UI or executable: not implemented.
 - Integrations: proposed and blocked on exact upstream contracts.
 - Ecosystem manifest consumer: synthetic, independently implemented, and bound to `QSO-FABRIC#21@25036a5cfcea79e204a4660ddd1af09c054935b1`; it grants no admission or runtime authority.
