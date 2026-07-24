@@ -18,6 +18,7 @@ QSO-STUDIO is the proposed **read-only review and design surface** for the Quant
 - [Onboarding](onboarding.md)
 - [Developer guide](developer-guide.md)
 - [Accessibility](accessibility.md)
+- [Accessibility review evidence](accessibility-review-evidence.md)
 - [Security and privacy](security-privacy.md)
 
 ## Current maturity
@@ -25,6 +26,7 @@ QSO-STUDIO is the proposed **read-only review and design surface** for the Quant
 | Surface | Status | Meaning |
 |---|---|---|
 | Documentation | Candidate | Reviewable source exists; publication is not yet authorized. |
+| Accessibility evidence | Documented, not certified | Exact-artifact review states, methods, correction links, and authority boundaries are defined; no rendered artifact or UI has been certified. |
 | User interface | Not implemented | No supported application or executable is claimed. |
 | Ecosystem manifest consumer | Synthetic candidate | Independently validates one immutable QSO-FABRIC manifest generation; it does not establish admission or live compatibility. |
 | Architecture-review consumer | Synthetic candidate | Independently validates one current QSO Field source tuple and review corpus; it does not appoint reviewers, establish a real quorum, decide architecture, or activate work. |
@@ -35,4 +37,4 @@ QSO-STUDIO is the proposed **read-only review and design surface** for the Quant
 
 ## Evidence and authority notice
 
-A diagram, mock fixture, passing documentation check, manifest match, review projection, or synthetic approval does not establish runtime capability, repository authority, reviewer appointment, real quorum, architecture approval, ecosystem admission, payment authority, release approval, or publication approval. The documentation source is governed by `QSO-CONSENT-CAPACITY-LOCK-v1`; any future consent-sensitive feature must remain fail closed and separately reviewed.
+A diagram, mock fixture, passing documentation check, manifest match, review projection, synthetic approval, or accessibility record does not establish runtime capability, repository authority, reviewer appointment, real quorum, architecture approval, ecosystem admission, payment authority, release approval, publication approval, or accessibility certification. The documentation source is governed by `QSO-CONSENT-CAPACITY-LOCK-v1`; any future consent-sensitive feature must remain fail closed and separately reviewed.
