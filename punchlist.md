@@ -2,7 +2,7 @@
 
 `QSO-STUDIO-DOCS-CANDIDATE-001`
 
-This punch list governs the documentation candidate and the bounded synthetic ecosystem and architecture-review consumers. Publication, implementation, release, ecosystem admission, reviewer appointment, architecture decisions, and deployment remain separately authorized.
+This punch list governs the documentation candidate, exact-artifact accessibility protocol, and bounded synthetic ecosystem and architecture-review consumers. Publication, accessibility certification, implementation, release, ecosystem admission, reviewer appointment, architecture decisions, and deployment remain separately authorized.
 
 ## Completed in this candidate
 
@@ -12,6 +12,10 @@ This punch list governs the documentation candidate and the bounded synthetic ec
 - [x] Add an architecture outline and accessible diagram with equivalent prose.
 - [x] Specify one fixture-oriented read-only evidence-review workflow.
 - [x] Add integration-contract, onboarding, developer, accessibility, and security/privacy guides.
+- [x] Add an exact-artifact accessibility review-evidence protocol with explicit source, rendered Pages, synthetic-consumer, and future-UI boundaries.
+- [x] Define text evidence states and authority states so partial, unknown, blocked, stale, corrected, withdrawn, and superseded claims cannot be confused with approval or action.
+- [x] Document keyboard/focus, screen-reader, zoom/reflow, contrast, reduced-motion, cognitive-comprehension, dense-evidence, and error-recovery methods.
+- [x] Add a documentation-only evidence-record template, fail-closed stops, correction, withdrawal, supersession, and rollback rules.
 - [x] Add deterministic documentation checks and hostile regressions.
 - [x] Bind README, task chain, release plan, punch list, and changelog to one candidate identifier.
 - [x] Preserve QSO-STUDIO PR #4 as historical after it diverged from current `main`.
@@ -28,7 +32,7 @@ This punch list governs the documentation candidate and the bounded synthetic ec
 - [ ] Approve or revise the product and UX charter.
 - [ ] Select the platform and distribution target.
 - [ ] Select the license and public contribution terms.
-- [ ] Assign or preserve vacancies for documentation, accessibility, privacy, security, integration, publication, evidence, and rollback ownership.
+- [ ] Assign or preserve vacancies for documentation, accessibility review/certification, privacy, security, integration, publication, evidence, and rollback ownership.
 - [ ] Decide whether GitHub Pages publication is desired and identify the authorized source and approval record.
 - [ ] Accept or reject exact upstream contract generations for the first fixture.
 - [ ] Resolve runtime-local versus Fabric-level record-role collisions before Studio combines them.
@@ -41,7 +45,9 @@ This punch list governs the documentation candidate and the bounded synthetic ec
 - [ ] Exact-head ecosystem-consumer workflow passes.
 - [ ] Exact-head architecture-review consumer workflow passes.
 - [ ] Retained evidence contains source identity, test output, input hashes, artifact digest, and expiration.
-- [ ] Manual accessibility and plain-language review is recorded.
+- [ ] One exact rendered artifact is reviewed for keyboard/focus, screen reader, 200%/400% zoom and reflow, contrast and non-color meaning, reduced motion, cognitive comprehension, graph/timeline alternatives, and error recovery.
+- [ ] The accessibility record identifies exact source, build, artifact, environment, methods, results, limitations, reviewer role, and correction/supersession links.
+- [ ] No `PARTIAL`, `UNKNOWN`, `BLOCKED`, stale, withdrawn, or superseded accessibility record is represented as `PASS` or certification.
 - [ ] Privacy, security, licensing, and attribution reviews are recorded.
 - [ ] Publication target and rollback procedure are explicitly approved.
 - [ ] The resulting published route is independently verified.
@@ -52,7 +58,7 @@ This punch list governs the documentation candidate and the bounded synthetic ec
 - [ ] Approve rendering, storage, networking, export, and dependency boundaries.
 - [ ] Prove that imported content remains inert.
 - [ ] Prove proposal/export and review-diagnostic separation from repository, architecture-decision, and runtime authority.
-- [ ] Define component, contract, integration, accessibility, security, and smoke tests.
+- [ ] Define component, contract, integration, exact-artifact accessibility, security, and smoke tests.
 - [ ] Add triple-overlap fixtures for runtime → Fabric → disposition/review and correction/revocation → presentation invalidation → rollback.
 
 The repository remains governed by `QSO-CONSENT-CAPACITY-LOCK-v1`.
